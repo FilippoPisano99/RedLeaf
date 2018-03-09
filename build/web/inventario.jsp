@@ -1,6 +1,6 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.*"%>
- <div class="NavTab">
+<div class="NavTab">
     <a href="index.jsp?IDPage=11&id_sede=<%= request.getParameter("id_sede") %>"><h2>< BACK</h2></a>
 </div>
  

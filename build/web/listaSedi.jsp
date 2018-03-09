@@ -1,5 +1,8 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.*"%>
+<div class="NavTab">
+    <a href="index.jsp?IDPage=0"><h2>< BACK</h2></a>
+</div>
 <h2>Selezionare una sede</h2>
 <table id="MainTableStyle">
     <tr>

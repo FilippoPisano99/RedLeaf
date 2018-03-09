@@ -5,7 +5,10 @@
     float:right;
     margin-right: 10px;
 }
-
+.newIstanceBoxForm .TitleTab
+{
+    border-top: solid 1px;
+}
 .newIstanceBoxForm input
 {
     margin:5px;
@@ -18,4 +21,10 @@
 .newIstanceBoxForm p
 {
     margin: 2px;
+}
+
+.sideModifyBox
+{
+    display: grid;
+    float: right;
 }

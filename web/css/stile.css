@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
+
 html
 {
     font-family: 'Roboto', sans-serif;
 }
 body
 {
-    background-color: antiquewhite;
+    background-color: #dcdcdc;
 }
 footer
 {

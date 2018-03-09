@@ -55,11 +55,13 @@
 
 /*DASHBOARD BOXES*/
 .iconBox{
+    color:black;
     font-size: 20px;
     padding:5px;
     float:left;
     margin: 10px;
     text-align: center;
-    border: dashed 2px;
+    border: solid 2px;
+    box-shadow: 4px 6px  grey;
     width:100px;
 }
