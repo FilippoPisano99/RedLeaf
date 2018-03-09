@@ -1,0 +1,17 @@
+#MainTableStyle,th,td
+{
+    border: solid black 1px;
+    border-collapse: collapse;
+}
+th,td{
+    padding:5px;
+}
+th{
+    background-color: burlywood;/*
+    background-color: #00ace6;*/
+}
+
+#MainTableStyle tr:nth-child(odd)
+{
+    background-color:#eee;
+}

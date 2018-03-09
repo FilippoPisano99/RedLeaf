@@ -29,6 +29,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="css/stile.css">
+        <link rel="stylesheet" type="text/css" href="css/instanceBox.css">
+        <link rel="stylesheet" type="text/css" href="css/managementBox.css">
+        <link rel="stylesheet" type="text/css" href="css/userBox.css">
+        <link rel="stylesheet" type="text/css" href="css/table.css">
     </head>
     <body>
         
@@ -36,12 +40,10 @@
             
             <div class="TitleTab">
                 <h2><%= pageName %></h2>
-                <div class="NavTab">
-                    <a href="index.jsp?IDPage=0"><h2>Home</h2></a>
-                    <a href="index.jsp?IDPage=1"><h2>Inventario</h2></a>
-                </div>
+                
             </div>
             <div id="ManagementTabContent">
+                
             <% 
                 switch(IDPage){
                     case "0":

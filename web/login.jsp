@@ -13,6 +13,7 @@
         <%
             session.setAttribute("userName", null);
             session.setAttribute("role", null );
+            session.setAttribute("inventario_aperto", null );
             session.setAttribute("extraParam", "" );
             String userName = (String)request.getParameter("userName")+"";
             String userPwd = (String)request.getParameter("userPwd")+"";

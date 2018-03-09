@@ -1,0 +1,21 @@
+.newIstanceBoxForm
+{
+    border:solid 2px black;
+    width:300px;
+    float:right;
+    margin-right: 10px;
+}
+
+.newIstanceBoxForm input
+{
+    margin:5px;
+}
+
+.submitButton
+{
+    float:right;
+}
+.newIstanceBoxForm p
+{
+    margin: 2px;
+}

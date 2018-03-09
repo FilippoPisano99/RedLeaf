@@ -1,5 +1,8 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.*"%>
+ <div class="NavTab">
+    <a href="index.jsp?IDPage=1"><h2>< BACK</h2></a>
+</div>
 <h2>Selezionare un'inventario</h2>
 <%
     session.setAttribute("id_sede", request.getParameter("id_sede"));

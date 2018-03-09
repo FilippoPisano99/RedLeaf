@@ -1,8 +1,13 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.*"%>
+ <div class="NavTab">
+    <a href="index.jsp?IDPage=11&id_sede=<%= request.getParameter("id_sede") %>"><h2>< BACK</h2></a>
+</div>
+ 
 <h2>Prodotti :</h2>
 
 <%
+    session.setAttribute("inventario_aperto", request.getParameter("inventario_aperto") );
     session.setAttribute("id_inventario",request.getParameter("id_inventario"));
     if(request.getParameter("nome")!=null && 
             request.getParameter("barcode")!=null && 
@@ -24,8 +29,7 @@
         }
         
     }
-%>
-<%  if( request.getParameter("inventario_aperto").equals("true") )
+    if( session.getAttribute("inventario_aperto")!=null && session.getAttribute("inventario_aperto").equals("true"))
     {
 %>
     <form class='newIstanceBoxForm' method="get" 
@@ -40,6 +44,7 @@
         <p>Qta:</p><input type='number' name='qta' min='0'><br>
         <p>Costo:</p><input type='number' name='costo' min='0' step="0.01"><br>
         <input type ="hidden" value="<%= session.getAttribute("id_sede") %>" name="id_sede">
+        <input type ="hidden" value="true" name="inventario_aperto">
         <input type ="hidden" value="<%= session.getAttribute("id_inventario") %>" name="id_inventario">
 
         <input type='submit' class="submitButton" value='Aggiungi'>
@@ -50,7 +55,6 @@
 %>
 <table id="MainTableStyle">
     <tr>
-        <th>ID</th>
         <th>NOME</th>
         <th>BARCODE</th>
         <th>QTA</th>
@@ -69,7 +73,6 @@
         String costo = rs.getString("costo");
         %> 
         <tr>
-            <td><%= id_prodotto %></td>
             <td><%= nome %></td>
             <td><%= barcode %></td>
             <td><%= qta %></td>
