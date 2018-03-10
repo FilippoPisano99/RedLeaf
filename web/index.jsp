@@ -17,6 +17,8 @@
     Class.forName("com.mysql.jdbc.Driver").newInstance(); 
     Connection DB = DriverManager.getConnection(url,"root" , "vertrigo");
 
+    session.setAttribute("DB", DB);
+    
     if(( session.getAttribute("userName")+"" ).equals("null"))
     {
         response.sendRedirect("login.jsp");
