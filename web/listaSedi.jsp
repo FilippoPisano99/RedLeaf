@@ -10,7 +10,7 @@
         <th>NOME</th>
         <th>INDIRIZZO</th>
         <th>APERTO DAL</th>
-        <th></th>
+        <th>APRI</th>
     </tr>
   <% 
     Statement stmt = DB.createStatement();
@@ -29,8 +29,10 @@
             <td><%= nome %></td>
             <td><%= indirizzo %></td>
             <td><%= date %></td>
-            <td>
-                <a href="index.jsp?IDPage=11&id_sede=<%= id_sede %>">APRI</a>
+            <td class="iconTable">
+                <a href="index.jsp?IDPage=11&id_sede=<%= id_sede %>">
+                    <i class="material-icons md-light" style="color:black;">open_in_browser</i>
+                </a>
             </td>
         </tr>
         <%     

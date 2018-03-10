@@ -70,9 +70,9 @@
         <th>DESCRIZIONE</th>
         <th>INIZIATO IL</th>
         <th>FINITO IL</th>
-        <th></th>
-        <th></th>
-        <th></th>
+        <th>CHIUDI</th>
+        <th>SCARICA</th>
+        <th>VISUALIZZA</th>
     </tr>
   <% 
     stmt = DB.createStatement();    
@@ -98,13 +98,22 @@
             <td><%= descrizione %></td>
             <td><%= data_inizio_string %></td>
             <td><%= data_fine_string %></td>
-            <td onClick="setModifyDate('<%= id_inventario %>','<%= data_inizio %>')"><a href="#">CHIUDI</a></td>
-            <td>
-                <a href="index.jsp?IDPage=111&id_sede=<%= session.getAttribute("id_sede") %>&id_inventario=<%= id_inventario %>&inventario_aperto=<%= data_fine_string.equals("---") %>">APRI</a>
+            <td class="iconTable" onClick="setModifyDate('<%= id_inventario %>','<%= data_inizio %>')">
+                <a href="#">
+                    <i class="material-icons md-light" style="color:black;">close</i>
+                </a>
             </td>
-            <td>
-                <a href="downloadInventario.jsp?descrizione=<%= descrizione %>&id_inventario=<%= id_inventario %>">DOWNLOAD</a>
+            <td class="iconTable">
+                <a href="downloadInventario.jsp?descrizione=<%= descrizione %>&id_inventario=<%= id_inventario %>">
+                    <i class="material-icons md-light" style="color:black;">file_download</i>
+                </a>
             </td>
+            <td class="iconTable">
+                <a href="index.jsp?IDPage=111&id_sede=<%= session.getAttribute("id_sede") %>&id_inventario=<%= id_inventario %>&inventario_aperto=<%= data_fine_string.equals("---") %>">
+                    <i class="material-icons md-light" style="color:black;">open_in_browser</i>
+                </a>
+            </td>
+            
         </tr>
         <%     
     } 

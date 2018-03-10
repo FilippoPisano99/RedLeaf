@@ -18,10 +18,3 @@
     <p>Email</p>
 </div>
 </a>
-
-<a href="downloadInventario.jsp">
-<div class="iconBox">
-    <img src="img/Email.png" width="50px" height="50px">
-    <p>Download</p>
-</div>
-</a>
