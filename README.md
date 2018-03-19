@@ -2,8 +2,12 @@
 Gestionale d'azienda è una applicazione web che funziona grazie alla tecnologia JSP.
 ## Obbiettivi
 - [ ] creare il modulo INVENTARIO
-  - [X] Gestione sedi
+  - [X] Selezione sedi
   - [X] Gestione Inventari
+  - [X] Gestione singolo inventario
 - [ ] creare il modulo FATTURE
 - [ ] creare il modulo FORNITORI
 - [ ] creare il modulo CLIENTI
+  - [X] Selezine sedi
+  - [ ] Gestione clienti
+  - [ ] Gestione singolo cliente 
