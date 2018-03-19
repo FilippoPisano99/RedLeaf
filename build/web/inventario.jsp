@@ -32,9 +32,7 @@
     if( session.getAttribute("inventario_aperto")!=null && session.getAttribute("inventario_aperto").equals("true"))
     {
 %>
-    <form class='newIstanceBoxForm' method="get" 
-          action='index.jsp'>
-
+    <form class='toolBoxForm' method="get" action='index.jsp'>
         <div class="TitleTab">
             <h3>Aggiungi un prodotto</h3>
         </div>

@@ -34,7 +34,7 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         
         <link rel="stylesheet" type="text/css" href="css/stile.css">
-        <link rel="stylesheet" type="text/css" href="css/instanceBox.css">
+        <link rel="stylesheet" type="text/css" href="css/toolBox.css">
         <link rel="stylesheet" type="text/css" href="css/managementBox.css">
         <link rel="stylesheet" type="text/css" href="css/userBox.css">
         <link rel="stylesheet" type="text/css" href="css/table.css">

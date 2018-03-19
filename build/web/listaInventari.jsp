@@ -36,7 +36,7 @@
     
 %>
 <div class="sideModifyBox">
-    <form class='newIstanceBoxForm' method="get" action='index.jsp'>
+    <form class='toolBoxForm' method="get" action='index.jsp'>
             <div class="TitleTab">
                 <h3>Crea un nuovo inventario</h3>
             </div>
@@ -49,7 +49,7 @@
             <input type='submit' class="submitButton" value='Crea inventario'>
 
     </form>
-    <form class='newIstanceBoxForm' method="get" action='index.jsp' id="closeInv">
+    <form class='toolBoxForm' style="display:none" method="get" action='index.jsp' id="closeInv">
             <div class="TitleTab">
                 <h3>Chiudi inventario</h3>
             </div>
@@ -126,6 +126,8 @@
     {
         document.getElementById("closeInv").id_inventario.value = id;
         document.getElementById("closeInv").finito_il.min = min;
+        //SHOW TAB
+        document.getElementById("closeInv").setAttribute("style","");
         
         
     }
