@@ -5,6 +5,13 @@
     </div>
 </a>
 
+<a href="index.jsp?IDPage=2">
+<div class="iconBox">
+    <img src="img/Cliente.png" width="50px" height="50px">
+    <p>Clienti</p>
+</div>
+</a>
+
 <a href="index.jsp?IDPage=1">
 <div class="iconBox">
     <img src="img/Fornitori.png" width="50px" height="50px">

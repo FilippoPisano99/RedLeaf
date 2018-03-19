@@ -38,6 +38,7 @@
         <link rel="stylesheet" type="text/css" href="css/managementBox.css">
         <link rel="stylesheet" type="text/css" href="css/userBox.css">
         <link rel="stylesheet" type="text/css" href="css/table.css">
+        <link rel="stylesheet" type="text/css" href="css/identityCardBox.css">
     </head>
     <body>
         
@@ -56,13 +57,23 @@
                     break;
                     
                     case "1":
-                        %><%@include file="listaSedi.jsp" %><% 
+                        %><%@include file="INV/listaSedi.jsp" %><% 
                     break;
                     case "11":
-                        %><%@include file="listaInventari.jsp" %><% 
+                        %><%@include file="INV/listaInventari.jsp" %><% 
                     break;
                     case "111":
-                        %><%@include file="inventario.jsp" %><% 
+                        %><%@include file="INV/inventario.jsp" %><% 
+                    break;
+                    
+                    case "2":
+                        %><%@include file="CLI/listaSedi.jsp" %><% 
+                    break;
+                    case "21":
+                        %><%@include file="CLI/listaClienti.jsp" %><% 
+                    break;
+                    case "211":
+                        %><%@include file="CLI/cliente.jsp" %><% 
                     break;
                     
                 }
