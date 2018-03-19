@@ -55,7 +55,8 @@
             </div>
             <input type ="hidden" value="11" name="IDPage">
             <input type ="hidden" value="close" name="action">
-            <p>ID:</p><input type='numbger' name='id_inventario'><br>
+            <input type='hidden' name='id_inventario'>
+            <p id="closeIDText">ID:</p>
             <p>Finito il:</p><input type='date' name='finito_il'><br>
             <input type ="hidden" value="<%= session.getAttribute("id_sede") %>" name="id_sede">
 
@@ -98,9 +99,24 @@
             <td><%= descrizione %></td>
             <td><%= data_inizio_string %></td>
             <td><%= data_fine_string %></td>
-            <td class="iconTable" onClick="setModifyDate('<%= id_inventario %>','<%= data_inizio %>')">
+            <td class="iconTable"
+                <%
+                    if(data_fine_string.equals("---"))
+                    { 
+                        %>onClick="setModifyDate('<%= id_inventario %>','<%= data_inizio %>')" <%
+                    }
+                %>
+                >
+                
                 <a href="#">
-                    <i class="material-icons md-light" style="color:black;">close</i>
+                    <i class="material-icons md-light" style="color:black;">
+                    <% 
+                        if(data_fine_string.equals("---"))
+                        {
+                            %>close<%
+                        }
+                    %>
+                    </i>
                 </a>
             </td>
             <td class="iconTable">
@@ -125,6 +141,7 @@
     function setModifyDate(id,min)
     {
         document.getElementById("closeInv").id_inventario.value = id;
+        document.getElementById("closeIDText").innerHTML = "ID: " + id;
         document.getElementById("closeInv").finito_il.min = min;
         //SHOW TAB
         document.getElementById("closeInv").setAttribute("style","");
