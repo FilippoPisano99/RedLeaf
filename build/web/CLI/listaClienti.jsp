@@ -38,29 +38,22 @@
 <div class="sideModifyBox">
     <form class='toolBoxForm' method="get" action='index.jsp'>
             <div class="TitleTab">
-                <h3>Crea un nuovo inventario</h3>
+                <h3>Aggiungi un cliente</h3>
             </div>
-            <input type ="hidden" value="11" name="IDPage">
-            <input type ="hidden" value="open" name="action">
-            <p>Descrizione:</p><input type='text' name='descrizione'><br>
-            <p>Iniziato il:</p><input type='date' name='iniziato_il'><br>
+            <input type ="hidden" value="21" name="IDPage">
+            <input type ="hidden" value="create" name="action">
             <input type ="hidden" value="<%= session.getAttribute("id_sede") %>" name="id_sede">
-
-            <input type='submit' class="submitButton" value='Aggiungi un cliente'>
-
-    </form>
-    <form class='toolBoxForm' style="display:none" method="get" action='index.jsp' id="closeInv">
-            <div class="TitleTab">
-                <h3>Chiudi inventario</h3>
-            </div>
-            <input type ="hidden" value="11" name="IDPage">
-            <input type ="hidden" value="close" name="action">
-            <input type='hidden' name='id_inventario'>
-            <p id="closeIDText">ID:</p>
-            <p>Finito il:</p><input type='date' name='finito_il'><br>
-            <input type ="hidden" value="<%= session.getAttribute("id_sede") %>" name="id_sede">
-
-            <input type='submit' class="submitButton" value='Chiudi inventario'>
+            
+            <p>Nome:</p><input type='text' name='nome'><br>
+            <p>Cognome:</p><input type='text' name='cognome'><br>
+            <p>Indirizzo:</p><input type='text' name='indirizzo'><br>
+            <p>Telefono:</p><input type='tel' name='indirizzo'><br>
+            <p>E-mail:</p><input type='email' name='indirizzo'><br>
+            <p>Citt&agrave;:</p><input type='text' name='citta'><br>
+            <p>Codice Fiscale:</p><input type='text' name='cf'><br>
+            <p>P.IVA:</p><input type='text' name='piva'><br>
+            
+            <input type='submit' class="submitButton" value='Aggiungi'>
 
     </form>
 </div>
