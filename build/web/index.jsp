@@ -24,7 +24,7 @@
         response.sendRedirect("login.jsp");
     }
 %>
-
+<%@include file="functions.jsp" %>
 <html>
     <head>
         <title>Gestionale Azienda</title>
