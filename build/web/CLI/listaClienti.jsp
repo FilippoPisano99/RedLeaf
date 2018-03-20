@@ -46,7 +46,7 @@
             <p>Iniziato il:</p><input type='date' name='iniziato_il'><br>
             <input type ="hidden" value="<%= session.getAttribute("id_sede") %>" name="id_sede">
 
-            <input type='submit' class="submitButton" value='Crea inventario'>
+            <input type='submit' class="submitButton" value='Aggiungi un cliente'>
 
     </form>
     <form class='toolBoxForm' style="display:none" method="get" action='index.jsp' id="closeInv">

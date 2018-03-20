@@ -91,7 +91,7 @@
             <h2><%= nome + " " + cognome %></h2>
             <p>Indirizzo: <%= indirizzo %> ,<%= citta %></p>
             <p>Telefono: <%= tel %></p>
-            <p>E-mail: <%= email %></p>
+            <p>E-mail: <a href="mailto:<%= email %>"><%= email %></a></p>
             <p>Partita IVA: <%= p_iva %></p>
             <p>Codice fiscale: <%= cf %></p>
         </div>   

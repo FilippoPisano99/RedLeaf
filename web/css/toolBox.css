@@ -1,13 +1,16 @@
 .toolBoxForm
 {
-    border:solid 2px black;
+    border-radius: 5px 5px 0px 0px;
+    border:solid 1px black;
     width:300px;
     float:right;
     margin-right: 10px;
+    
 }
 .toolBoxForm .TitleTab
 {
     border-top: solid 1px;
+    border-radius: 5px 5px 0px 0px;
 }
 .toolBoxForm input
 {
@@ -24,7 +27,7 @@
 }
 .toolBoxForm p
 {
-    margin: 2px;
+    margin: 5px;
 }
 
 .sideModifyBox

@@ -4,6 +4,7 @@
     float:right;
     width: 18%;
     height:  auto;
-    border: solid 3px;
+    border-radius: 5px 5px 0px 0px;
+    border: solid 1px black;
     box-shadow: 6px 5px 10px grey;
 }
