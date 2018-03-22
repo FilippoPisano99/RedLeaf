@@ -14,3 +14,4 @@ Gestionale d'azienda è una applicazione web che funziona grazie alla tecnologia
   - [ ] Possibilità di aggiungere i prodotti venduti da un fornitore(Nella pagina contatto.jsp)
 ## Diagramma ER
 ![ER Diagram](https://i.imgur.com/EiDeA9c.png "Diagramma ER")
+[Download Export MySql DB](https://pastebin.com/raw/6ABdPdZq)
