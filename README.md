@@ -6,10 +6,9 @@ Gestionale d'azienda è una applicazione web che funziona grazie alla tecnologia
   - [X] Gestione Inventari
   - [X] Gestione singolo inventario
 - [ ] creare il modulo FATTURE
-- [ ] creare il modulo FORNITORI
-- [ ] creare il modulo CLIENTI
+- [ ] creare il modulo RUBRICA
   - [X] Selezine sedi
-  - [ ] Gestione clienti
-  - [ ] Gestione singolo cliente 
+  - [ ] Gestione clienti/fornitore
+  - [ ] Gestione singolo cliente/fornitore
 ## Diagramma ER
-![ER Diagram](https://i.imgur.com/EiDeA9c.png "Logo Title Text 1")
+![ER Diagram](https://i.imgur.com/EiDeA9c.png "Diagramma ER")
