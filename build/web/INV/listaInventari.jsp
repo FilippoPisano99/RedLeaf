@@ -56,8 +56,8 @@
             <input type ="hidden" value="11" name="IDPage">
             <input type ="hidden" value="close" name="action">
             <input type='hidden' name='id_inventario'>
-            <p id="closeIDText">ID:</p>
-            <p>Finito il:</p><input type='date' name='finito_il'><br>
+            <p id="closeIDText">ID:</p><br>
+            <p>Chiuso il:</p><input type='date' name='finito_il'><br>
             <input type ="hidden" value="<%= session.getAttribute("id_sede") %>" name="id_sede">
 
             <input type='submit' class="submitButton" value='Chiudi inventario'>
@@ -103,7 +103,7 @@
                 <%
                     if(data_fine_string.equals("---"))
                     { 
-                        %>onClick="setModifyDate('<%= id_inventario %>','<%= data_inizio %>')" <%
+                        %>onClick="setModifyDate('<%= descrizione %>','<%= id_inventario %>','<%= data_inizio %>')" <%
                     }
                 %>
                 >
@@ -120,7 +120,7 @@
                 </a>
             </td>
             <td class="iconTable">
-                <a href="downloadInventario.jsp?descrizione=<%= descrizione %>&id_inventario=<%= id_inventario %>">
+                <a href="INV/downloadInventario.jsp?descrizione=<%= descrizione %>&id_inventario=<%= id_inventario %>">
                     <i class="material-icons md-light" style="color:black;">file_download</i>
                 </a>
             </td>
@@ -138,10 +138,10 @@
 
 
 <script>
-    function setModifyDate(id,min)
+    function setModifyDate(desc,id,min)
     {
         document.getElementById("closeInv").id_inventario.value = id;
-        document.getElementById("closeIDText").innerHTML = "ID: " + id;
+        document.getElementById("closeIDText").innerHTML = "Inventario: <strong>" + desc +"<strong>";
         document.getElementById("closeInv").finito_il.min = min;
         //SHOW TAB
         document.getElementById("closeInv").setAttribute("style","");

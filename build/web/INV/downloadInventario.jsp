@@ -5,7 +5,9 @@
         {
             String csvFileContent ="nome;barcode;qta;costo;\n";
             Statement stmt = ((Connection)session.getAttribute("DB")).createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM prodotto WHERE id_inventario = " + request.getParameter("id_inventario"));
+            ResultSet rs = stmt.executeQuery("SELECT * FROM articolo a, dettaglioInventario dett "
+                    + "WHERE a.id_articolo = dett.id_articolo "
+                    + "AND dett.id_inventario = " + request.getParameter("id_inventario"));
             while(rs.next())
             {
                 String nome = rs.getString("nome");

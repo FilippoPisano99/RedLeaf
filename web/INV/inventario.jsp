@@ -9,23 +9,27 @@
 <%
     session.setAttribute("inventario_aperto", request.getParameter("inventario_aperto") );
     session.setAttribute("id_inventario",request.getParameter("id_inventario"));
-    if(request.getParameter("nome")!=null && 
-            request.getParameter("barcode")!=null && 
-            request.getParameter("qta")!=null && 
-            request.getParameter("costo")!=null )
+    if(request.getParameter("id_articolo")!=null && request.getParameter("qta")!=null)
     {
-        String nome = request.getParameter("nome")+"";
-        String barcode = request.getParameter("barcode")+"";
-        String qta = request.getParameter("qta")+"";
-        String costo = request.getParameter("costo")+"";
+        String id_articolo = request.getParameter("id_articolo");
+        String qta = request.getParameter("qta");
         
-        try
+        rs =  executeQuery(session,"SELECT * FROM dettaglioInventario WHERE id_inventario = " + session.getAttribute("id_inventario")
+                + " AND id_articolo="+id_articolo);
+        boolean hadArticle = false;
+        while(rs.next())
         {
-            stmt = DB.createStatement();
-            stmt.executeUpdate("INSERT INTO prodotto (id_prodotto, nome, qta, barcode, id_inventario, costo) "
-                    + "VALUES (NULL,\""+nome+"\", '"+qta+"', '"+barcode+"', '"+session.getAttribute("id_inventario")+"', '"+costo+"')");
-        }catch(Exception e)
+            int Oldqta = rs.getInt("qta");
+            int newqta = Oldqta + Integer.parseInt(qta);
+            executeUpdate(session,"UPDATE dettaglioInventario SET qta = "+newqta +" WHERE id_articolo="+id_articolo);
+            hadArticle = true;
+            break;
+        }
+        
+        if(!hadArticle)
         {
+            executeInsert(session,"INSERT INTO dettaglioInventario (id_dettaglioInventario, id_inventario, id_articolo , qta) "
+                    + "VALUES (NULL,\""+session.getAttribute("id_inventario")+"\",\""+id_articolo+"\", '"+qta+"' )");
         }
         
     }
@@ -37,10 +41,21 @@
             <h3>Aggiungi un prodotto</h3>
         </div>
         <input type ="hidden" value="111" name="IDPage">
-        <p>Nome:</p><input type='text' name='nome'><br>
-        <p>Barcode:</p><input type='text' name='barcode'><br>
+        <p>Seleziona un prodotto:</p>
+        <select name="id_articolo">
+            <%
+            //<option></option>
+                rs = executeQuery(session, "SELECT a.id_articolo,a.nome FROM articolo a, rubrica r "
+                        + "WHERE r.tipo='F' AND "
+                        + "r.id_sede = "+session.getAttribute("id_sede"));
+                while(rs.next())
+                {
+                    %><option value="<%= rs.getString("id_articolo") %>"><%= rs.getString("nome") %></option><%
+                }
+            %>        
+        </select>
+        <br>
         <p>Qta:</p><input type='number' name='qta' min='0'><br>
-        <p>Costo:</p><input type='number' name='costo' min='0' step="0.01"><br>
         <input type ="hidden" value="<%= session.getAttribute("id_sede") %>" name="id_sede">
         <input type ="hidden" value="true" name="inventario_aperto">
         <input type ="hidden" value="<%= session.getAttribute("id_inventario") %>" name="id_inventario">
@@ -62,10 +77,11 @@
   <% 
     String id_inventario = request.getParameter("id_inventario");
     stmt = DB.createStatement();
-    rs = stmt.executeQuery("SELECT * FROM prodotto WHERE id_inventario = " + id_inventario);
+    rs = stmt.executeQuery("SELECT * FROM articolo a, dettaglioInventario dett "
+            + "WHERE a.id_articolo = dett.id_articolo "
+            + "AND dett.id_inventario = " + id_inventario);
     while(rs.next())
     {
-        String id_prodotto = rs.getString("id_prodotto");
         String nome = rs.getString("nome");
         String barcode = rs.getString("barcode");
         String qta = rs.getString("qta");

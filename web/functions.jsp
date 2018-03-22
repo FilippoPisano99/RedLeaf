@@ -47,4 +47,32 @@
         return output;
     }
 
+    public boolean executeUpdate(HttpSession session, String sql)
+    {
+        boolean output = true;
+        try
+        {
+            Connection DB = (Connection) session.getAttribute("DB");
+            Statement stmt = DB.createStatement();
+            stmt.executeUpdate(sql);
+        }
+        catch(Exception e){output = false;}
+
+        return output;
+    }
+
+    public ResultSet executeQuery(HttpSession session, String sql)
+    {
+        ResultSet output;
+        try
+        {
+            Connection DB = (Connection) session.getAttribute("DB");
+            Statement stmt = DB.createStatement();
+            output = stmt.executeQuery(sql);
+        }
+        catch(Exception e){output = null;}
+
+        return output;
+    }
+
 %>

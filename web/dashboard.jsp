@@ -7,8 +7,8 @@
 
 <a href="index.jsp?IDPage=2">
 <div class="iconBox">
-    <img src="img/Cliente.png" width="50px" height="50px">
-    <p>Clienti</p>
+    <img src="img/Rubrica.png" width="50px" height="50px">
+    <p>Rubrica</p>
 </div>
 </a>
 

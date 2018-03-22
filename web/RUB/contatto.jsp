@@ -3,34 +3,18 @@
     <a href="index.jsp?IDPage=21&id_sede=<%= session.getAttribute("id_sede")%>"><h2>< BACK</h2></a>
 </div>
 
-<%!
-    public void executeUpdate(HttpSession s , String sql)
-    {
-        try
-        {
-            Connection DB = (Connection) s.getAttribute("DB");
-            Statement stmt = DB.createStatement();
-            stmt.executeUpdate(sql);
-        }catch(Exception e)
-        {
-            
-        }
-    }
-%>
-
-
 <%
 
     if(request.getParameter("action")!=null)
     {
-        String id_cliente = request.getParameter("id_cliente");
+        String id_rubrica = request.getParameter("id_rubrica");
         String opzione = request.getParameter("opzione");
         String new_value = request.getParameter("new_value");
         
         switch(opzione)
         {
             case"0":
-                executeUpdate(session,"UPDATE cliente SET telefono="+new_value+" WHERE id_cliente="+id_cliente);
+                executeUpdate(session,"UPDATE cliente SET telefono='"+new_value+"' WHERE id_cliente="+id_rubrica);
                 break;
             case"1":
                 break;
@@ -54,7 +38,7 @@
             </div>
             <input type ="hidden" value="211" name="IDPage">
             <input type ="hidden" value="modify" name="action">
-            <input type ="hidden" value="<%= request.getParameter("id_cliente") %>" name="id_cliente">
+            <input type ="hidden" value="<%= request.getParameter("id_rubrica") %>" name="id_cliente">
             <p>Campo da modificare:</p>
             <select name="opzione" >
                 <option value="" selected disabled hidden>Scegli il campo</option>
@@ -75,7 +59,7 @@
             
 <% 
     stmt = DB.createStatement();    
-    rs = stmt.executeQuery("SELECT * FROM cliente WHERE id_cliente = " + request.getParameter("id_cliente") );
+    rs = stmt.executeQuery("SELECT * FROM rubrica WHERE id_rubrica = " + request.getParameter("id_rubrica") );
     while(rs.next())
     {
         String nome = rs.getString("nome");
@@ -86,9 +70,11 @@
         String email = rs.getString("email");
         String p_iva = rs.getString("partita_iva");
         String cf = rs.getString("codice_fiscale");
+        String tipo = rs.getString("tipo");
         %> 
         <div class="identityCardBox">
             <h2><%= nome + " " + cognome %></h2>
+            <strong><%= tipo.equals("F")? "FORNITORE" : "CLIENTE" %></strong>
             <p>Indirizzo: <%= indirizzo %> ,<%= citta %></p>
             <p>Telefono: <%= tel %></p>
             <p>E-mail: <a href="mailto:<%= email %>"><%= email %></a></p>

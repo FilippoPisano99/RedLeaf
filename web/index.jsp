@@ -67,13 +67,13 @@
                     break;
                     
                     case "2":
-                        %><%@include file="CLI/listaSedi.jsp" %><% 
+                        %><%@include file="RUB/listaSedi.jsp" %><% 
                     break;
                     case "21":
-                        %><%@include file="CLI/listaClienti.jsp" %><% 
+                        %><%@include file="RUB/listaContatti.jsp" %><% 
                     break;
                     case "211":
-                        %><%@include file="CLI/cliente.jsp" %><% 
+                        %><%@include file="RUB/contatto.jsp" %><% 
                     break;
                     
                 }
