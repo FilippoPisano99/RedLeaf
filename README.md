@@ -12,4 +12,4 @@ Gestionale d'azienda è una applicazione web che funziona grazie alla tecnologia
   - [ ] Gestione clienti
   - [ ] Gestione singolo cliente 
 ## Diagramma ER
-![Diagramma ER] (https://i.imgur.com/EiDeA9c.png)
+![ER Diagram](https://i.imgur.com/EiDeA9c.png "Logo Title Text 1")
