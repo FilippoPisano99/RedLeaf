@@ -7,46 +7,81 @@
 
     if(request.getParameter("action")!=null)
     {
-        String id_rubrica = request.getParameter("id_rubrica");
-        String opzione = request.getParameter("opzione");
-        String new_value = request.getParameter("new_value");
-        
-        switch(opzione)
+        if(request.getParameter("action").equals("modify"))
         {
-            case"0":
-                executeUpdate(session,"UPDATE cliente SET telefono='"+new_value+"' WHERE id_cliente="+id_rubrica);
-                break;
-            case"1":
-                break;
-            case"2":
-                break;
-            case"3":
-                break;
-            case"4":
-                break;
-                
+            String id_rubrica = request.getParameter("id_rubrica");
+            String opzione = request.getParameter("opzione");
+            String new_value = request.getParameter("new_value");
+
+            if(!opzione.equals("")){
+                executeUpdate(session,"UPDATE rubrica SET "+opzione+"='"+new_value+"' WHERE id_rubrica="+id_rubrica);
+            }
+        }
+        if(request.getParameter("action").equals("add"))
+        {
+            String id_rubrica = request.getParameter("id_rubrica");
+            String nome = request.getParameter("nome");
+            String barcode = request.getParameter("barcode");
+            String costo = request.getParameter("costo");
+    
+            executeInsert(session,"INSERT INTO articolo VALUES (NULL,"+id_rubrica+","+nome+"', '"+barcode+"', "+costo+" )");
+            
         }
         
     }
 
 %>
 
+
 <div class="sideModifyBox">
+<% 
+    stmt = DB.createStatement();  
+    
+    rs = stmt.executeQuery("SELECT tipo FROM rubrica WHERE id_rubrica = " + request.getParameter("id_rubrica") );
+    while (rs.next())
+    {
+        if(rs.getString("tipo").equals("F"))
+        {
+            %>
+            <form class='toolBoxForm' method="get" action='index.jsp' id="closeInv">
+                <div class="TitleTab">
+                    <h3>Aggiungi un articolo</h3>
+                </div>
+                <input type ="hidden" value="211" name="IDPage">
+                <input type ="hidden" value="add" name="action">
+                <input type ="hidden" value="<%= request.getParameter("id_rubrica") %>" name="id_rubrica">
+                <p>Nome:</p>
+                <input type="text" name="nome">
+
+                <p>Barcode:</p>
+                <input type="text" name="barcode">
+                
+                <p>Costo:</p>
+                <input type="number" min="0" step="0.01" name="costo">
+
+                <input type='submit' class="submitButton" value='Aggiungi'>
+            </form>
+            <%
+        }
+        break;
+    }
+%>
+
     <form class='toolBoxForm' method="get" action='index.jsp' id="closeInv">
             <div class="TitleTab">
                 <h3>Modifica</h3>
             </div>
             <input type ="hidden" value="211" name="IDPage">
             <input type ="hidden" value="modify" name="action">
-            <input type ="hidden" value="<%= request.getParameter("id_rubrica") %>" name="id_cliente">
+            <input type ="hidden" value="<%= request.getParameter("id_rubrica") %>" name="id_rubrica">
             <p>Campo da modificare:</p>
             <select name="opzione" >
                 <option value="" selected disabled hidden>Scegli il campo</option>
-                <option value="0">Telefono</option>
-                <option value="1">Indirizzo</option>
-                <option value="2">Citta</option>
-                <option value="3">Email</option>
-                <option value="4">P.IVA</option>
+                <option value="telefono">Telefono</option>
+                <option value="indirizzo">Indirizzo</option>
+                <option value="citta">Citta</option>
+                <option value="email">Email</option>
+                <option value="partita_iva">P.IVA</option>
             </select>
             
             <p>Nuovo valore:</p>
@@ -58,7 +93,7 @@
 </div>
             
 <% 
-    stmt = DB.createStatement();    
+      
     rs = stmt.executeQuery("SELECT * FROM rubrica WHERE id_rubrica = " + request.getParameter("id_rubrica") );
     while(rs.next())
     {
@@ -81,6 +116,9 @@
             <p>Partita IVA: <%= p_iva %></p>
             <p>Codice fiscale: <%= cf %></p>
         </div>   
-        <%     
+        <%  
+            
+        break;
     } 
   %>
+  
