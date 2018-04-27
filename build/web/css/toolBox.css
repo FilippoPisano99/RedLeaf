@@ -1,6 +1,5 @@
 .toolBoxForm
 {
-    border-radius: 5px 5px 0px 0px;
     border:solid 1px black;
     width:300px;
     float:right;
@@ -10,9 +9,9 @@
 }
 .toolBoxForm .TitleTab
 {
-    border-top: solid 1px;
-    border-radius: 5px 5px 0px 0px;
     margin-bottom: 5px;
+    border-bottom: solid 1px black;
+
 }
 .toolBoxForm input
 {

@@ -1,20 +1,26 @@
 <a href="index.jsp?IDPage=1">
     <div class="iconBox">
         <img src="img/Inventario.png" width="50px" height="50px" >
-        <p>Inventario</p>
+        <div class="iconBoxText">
+            <p>Inventario</p>
+        </div>
     </div>
 </a>
 
 <a href="index.jsp?IDPage=2">
 <div class="iconBox">
     <img src="img/Rubrica.png" width="50px" height="50px">
-    <p>Rubrica</p>
+    <div class="iconBoxText">
+        <p>Rubrica</p>
+    </div>
 </div>
 </a>
 
 <a href="index.jsp?IDPage=1">
 <div class="iconBox">
     <img src="img/Fornitori.png" width="50px" height="50px">
-    <p>Fornitori</p>
+    <div class="iconBoxText">
+        <p>Fornitori</p>
+    </div>
 </div>
 </a>

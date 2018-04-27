@@ -8,8 +8,23 @@
     
     String pageName = "Homepage";
     switch(IDPage){
-        case "2":
+        case "1":
             pageName = "Inventario";
+            break;
+        case "11":
+            pageName = "Inventario";
+            break;
+        case "111":
+            pageName = "Inventario";
+            break;
+        case "2":
+            pageName = "Rubrica";
+            break;
+        case "21":
+            pageName = "Rubrica";
+            break;
+        case "211":
+            pageName = "Rubrica";
             break;
     }
     
@@ -41,6 +56,8 @@
         <link rel="stylesheet" type="text/css" href="css/identityCardBox.css">
     </head>
     <body>
+        <div>
+        <%@include file="userTab.jsp" %>
         
         <div id="ManagementTab">
             
@@ -82,9 +99,11 @@
            
         </div>
         
+        </div>
         
-        <%@include file="userTab.jsp" %>
         
     </body>
-    <footer>&copy; Copyright 2018 Filippo Pisano</footer>
+    <!--
+        <footer>&copy; Copyright 2018 Filippo Pisano</footer>
+    -->
 </html>

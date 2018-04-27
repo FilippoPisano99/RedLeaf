@@ -1,13 +1,13 @@
 #ManagementTab
 {
-    background-color: white;
-    float:left;
-    width: 80%;
-    height: 95%;
-    border: solid 1px;
-    border-radius: 5px 5px 0px 0px;
+    background-color: #f5f5f1;
+    float:right;
+    width: calc(100% - 180px);
+    height: -webkit-fill-available;
+    /*border: solid 1px;*/
+    /*border-radius: 5px 5px 0px 0px;*/
     overflow-y:auto;
-    box-shadow: 6px 9px 10px grey;
+    /*box-shadow: 6px 9px 10px grey;*/
 
 }
 #ManagementTabContent
@@ -19,21 +19,16 @@
 {
     display: flex;
     margin-top: 10px;
-    background-color: white;
     text-align: left;
 }
 .NavTab h2
 {
     text-decoration: none;
     border: solid 1px;
-    color:black;/*
-    box-shadow: 4px 3px 10px grey ;*/
-    box-shadow: 4px 3px 10px grey ;
-    /*border-right: solid 2px black;*/
-    background-color: rgb(154,220,252);
-    /*#95d7a4;
-    wheat;
-    background-color: #ccc;*/
+    color:#f5f5f1;
+    
+    background-color: #221f1f;
+    
     font-size: 20px;
     margin-top: 0;
     margin-bottom: 0;
@@ -45,13 +40,15 @@
 
 .TitleTab
 {
+    color:#f5f5f1;
     /*border-bottom: solid 3px;*/
-    box-shadow: 0px 3px 10px grey;
-    background-color:rgb(154,220,252);
+    /*box-shadow: 0px 3px 10px grey;
+    background-color:rgb(154,220,252);*/
+    background-color: #e50914;
     /*#95d7a4;
     burlywood;
     background-color: #00ace6;*/
-    border-radius: 5px 5px 0px 0px;
+    /*border-radius: 5px 5px 0px 0px;*/
     text-align: center;
     padding: 3px;
 }
@@ -65,11 +62,26 @@
 .iconBox{
     color:black;
     font-size: 20px;
-    padding:5px;
     float:left;
     margin: 10px;
     text-align: center;
     border: solid 1px;
-    box-shadow: 4px 6px 10px grey;
+    box-shadow: 4px 6px 3px #ddd;
     width:100px;
+}
+
+.iconBox img{    
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+.iconBoxText{
+    background-color: #e50914;
+    width: 100%;
+}
+.iconBoxText p
+{
+    margin-bottom: 0px;
+    color:#f5f5f1;
 }

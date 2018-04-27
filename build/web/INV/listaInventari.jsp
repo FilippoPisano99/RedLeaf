@@ -12,25 +12,20 @@
         if(request.getParameter("action").equals("open")){
             if(request.getParameter("descrizione")!=null && request.getParameter("iniziato_il")!=null )
             {
-                try
-                {
-                    stmt = DB.createStatement();
-                    stmt.executeUpdate("INSERT INTO inventario (id_inventario, id_sede, descrizione, data_inizio, data_fine) "
+                executeInsert(session,"INSERT INTO inventario (id_inventario, id_sede, descrizione, data_inizio, data_fine) "
                             + "VALUES (NULL, '"+session.getAttribute("id_sede")+"', "
                             + "'"+request.getParameter("descrizione")+"',"
                             + "'"+request.getParameter("iniziato_il")+"', NULL)");
-                }catch(Exception e){}
             }
-        }else if(request.getParameter("action").equals("close"))
-        {
+        }else if(request.getParameter("action").equals("close")){
             if(request.getParameter("id_inventario")!=null && request.getParameter("finito_il")!=null )
             {
-                try{
-                    stmt = DB.createStatement();
-                    stmt.executeUpdate("UPDATE inventario SET data_fine = '"+request.getParameter("finito_il")
-                            +"' WHERE inventario.id_inventario = "+request.getParameter("id_inventario"));
-                }catch(Exception e){}
+                executeUpdate(session,"UPDATE inventario SET data_fine = '"+request.getParameter("finito_il")
+                        +"' WHERE inventario.id_inventario = "+request.getParameter("id_inventario"));
             }
+        }
+        else if(request.getParameter("action").equals("delete")){
+            executeUpdate(session,"DELETE FROM inventario WHERE id_inventario = "+request.getParameter("id_inventario") );
         }
     }
     
@@ -129,7 +124,11 @@
                     <i class="material-icons md-light" style="color:black;">open_in_browser</i>
                 </a>
             </td>
-            
+            <td class="iconTable">
+                <a href="index.jsp?IDPage=11&id_inventario=<%=id_inventario%>&id_sede=<%=request.getParameter("id_sede")%>&action=delete">
+                    <i class="material-icons md-light" style="color:black;">delete</i>
+                </a>
+            </td>
         </tr>
         <%     
     } 

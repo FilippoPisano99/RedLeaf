@@ -39,6 +39,9 @@
                             + " '"+request.getParameter("tipo")+"')");
                 }
             }
+        }else if(request.getParameter("action").equals("delete"))
+        {
+            executeUpdate(session,"DELETE FROM rubrica WHERE id_rubrica = " +request.getParameter("id_rubrica"));
         }
     }
     
@@ -94,6 +97,11 @@
             <td class="iconTable">
                 <a href="index.jsp?IDPage=211&id_rubrica=<%=id_rubrica%>">
                     <i class="material-icons md-light" style="color:black;">open_in_browser</i>
+                </a>
+            </td>
+            <td class="iconTable">
+                <a href="index.jsp?IDPage=21&id_rubrica=<%=id_rubrica%>&id_sede=<%=request.getParameter("id_sede")%>&action=delete">
+                    <i class="material-icons md-light" style="color:black;">delete</i>
                 </a>
             </td>
             
