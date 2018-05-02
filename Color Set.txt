@@ -1,0 +1,8 @@
+RED
+#e50914
+
+WHITE
+#f5f5f1
+
+BLACK
+#221f1f
