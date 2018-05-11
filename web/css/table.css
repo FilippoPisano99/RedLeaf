@@ -1,6 +1,6 @@
 #MainTableStyle,th,td
 {
-    
+
     border: solid black 1px;
     border-collapse: collapse;
 }
@@ -21,4 +21,9 @@ th{
 
 .iconTable{
     text-align: center;
+}
+
+.material-icons
+{
+    user-select: none;
 }

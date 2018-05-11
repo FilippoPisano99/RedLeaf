@@ -2,9 +2,11 @@
     <div class="TitleTab">
         <h2><%= userName %></h2>
     </div>
-    <ul>
-        <li>
-        <a href="login.jsp">Log out</a>
-        </li>
-    </ul>
+    <a href="#">Account</a>
+    <br>
+    <a href="login.jsp">
+        <div id="logoutBox">
+            Esci
+        </div>
+    </a>
 </div>

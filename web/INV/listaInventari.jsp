@@ -1,12 +1,14 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.*"%>
- <div class="NavTab">
+<div class="NavTab">
     <a href="index.jsp?IDPage=1"><h2>< BACK</h2></a>
+    <i class="material-icons md-light" style="color:black;" onclick="showAddBox()">add_circle_outline</i>
 </div>
 <h2>Selezionare un'inventario</h2>
+
 <%
     session.setAttribute("id_sede", request.getParameter("id_sede"));
-    
+
     if(request.getParameter("action")!=null)
     {
         if(request.getParameter("action").equals("open")){
@@ -28,10 +30,10 @@
             executeUpdate(session,"DELETE FROM inventario WHERE id_inventario = "+request.getParameter("id_inventario") );
         }
     }
-    
+
 %>
 <div class="sideModifyBox">
-    <form class='toolBoxForm' method="get" action='index.jsp'>
+    <form class='toolBoxForm' style="display:none"  method="get" action='index.jsp' id="addInv">
             <div class="TitleTab">
                 <h3>Crea un nuovo inventario</h3>
             </div>
@@ -59,7 +61,7 @@
 
     </form>
 </div>
-        
+
 <table id="MainTableStyle">
     <tr>
         <th>ID</th>
@@ -70,8 +72,8 @@
         <th>SCARICA</th>
         <th>VISUALIZZA</th>
     </tr>
-  <% 
-    stmt = DB.createStatement();    
+  <%
+    stmt = DB.createStatement();
     rs = stmt.executeQuery("SELECT * FROM inventario WHERE id_sede = " + session.getAttribute("id_sede") );
     while(rs.next())
     {
@@ -79,7 +81,7 @@
         String descrizione = rs.getString("descrizione");
         Date data_inizio = rs.getDate("data_inizio");
         Date data_fine = rs.getDate("data_fine");
-        
+
         SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
         String data_inizio_string = formatoData.format(data_inizio);
         String data_fine_string = "---";
@@ -87,8 +89,8 @@
         {
             data_fine_string = formatoData.format(data_fine);
         }
-         
-        %> 
+
+        %>
         <tr>
             <td><%= id_inventario %></td>
             <td><%= descrizione %></td>
@@ -97,15 +99,15 @@
             <td class="iconTable"
                 <%
                     if(data_fine_string.equals("---"))
-                    { 
+                    {
                         %>onClick="setModifyDate('<%= descrizione %>','<%= id_inventario %>','<%= data_inizio %>')" <%
                     }
                 %>
                 >
-                
+
                 <a href="#">
                     <i class="material-icons md-light" style="color:black;">
-                    <% 
+                    <%
                         if(data_fine_string.equals("---"))
                         {
                             %>close<%
@@ -125,18 +127,35 @@
                 </a>
             </td>
             <td class="iconTable">
-                <a href="index.jsp?IDPage=11&id_inventario=<%=id_inventario%>&id_sede=<%=request.getParameter("id_sede")%>&action=delete">
+                <!--toggleAskDeleteBox(id_inventario,id_sede,descrizione) -->
+                <a onclick="toggleAskDeleteBox(<%= id_inventario %>,<%= session.getAttribute("id_sede") %>,'<%= descrizione %>')">
                     <i class="material-icons md-light" style="color:black;">delete</i>
                 </a>
             </td>
         </tr>
-        <%     
-    } 
+        <%
+    }
   %>
 </table>
 
+<div id="AskDeleteBox">
+   <div class="TitleTab">
+      <h3>Vuoi cancellare l'inventario</h3>
+   </div>
+   <p>Vuoi cancellare l'inventario :<br><span id="spanNomeInventario"></span></p>
+   <br>
+   <form method="GET" id="deleteFrom" action="index.jsp">
+        <input type="hidden" name="action" value="delete">
+        <input type="hidden" name="IDPage" value="11">
+        <input type="hidden" name="id_sede" value="">
+        <input type="hidden" name="id_inventario" value="">
+        <input type="submit" id="YesDeleteBtn" value="SI" >
+        <input type="button" id="NoDeleteBtn" onclick="toggleAskDeleteBox()" value="NO" >
+   </form>
+</div>
 
 <script>
+    delToggle = 0;
     function setModifyDate(desc,id,min)
     {
         document.getElementById("closeInv").id_inventario.value = id;
@@ -144,7 +163,26 @@
         document.getElementById("closeInv").finito_il.min = min;
         //SHOW TAB
         document.getElementById("closeInv").setAttribute("style","");
-        
-        
+    }
+    function showAddBox()
+    {
+        //SHOW TAB
+        document.getElementById("addInv").setAttribute("style","");
+    }
+    function toggleAskDeleteBox(id_inventario,id_sede,descrizione)
+    {
+        if(delToggle%2 == 0){
+            document.getElementById("spanNomeInventario").innerHTML=descrizione;
+            document.getElementById("AskDeleteBox").style.display="unset";
+            document.getElementById("deleteFrom").id_inventario.value=id_inventario;
+            document.getElementById("deleteFrom").id_sede.value=id_sede;
+            delToggle++;
+        }else {
+            delToggle++;
+            document.getElementById("spanNomeInventario").innerHTML="";
+            document.getElementById("AskDeleteBox").style.display="none";
+            document.getElementById("deleteFrom").id_inventario.value="";
+            document.getElementById("deleteFrom").id_sede.value="";
+        }
     }
 </script>

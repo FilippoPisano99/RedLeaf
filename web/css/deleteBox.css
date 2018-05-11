@@ -1,0 +1,15 @@
+#AskDeleteBox
+{
+    display: none;
+    position: absolute;
+    top: 25%;
+    text-align:center;
+    margin-left: 25%;
+    background: white;
+    border: solid 1px black;
+}
+#AskDeleteBox input
+{
+    width: 80px;
+    height: 50px;
+}

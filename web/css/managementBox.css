@@ -26,14 +26,22 @@
     text-decoration: none;
     border: solid 1px;
     color:#f5f5f1;
-    
+    position: relative;
     background-color: #221f1f;
-    
+
     font-size: 20px;
     margin-top: 0;
     margin-bottom: 0;
     padding-left: 8px;
     padding-right: 8px;
+}
+
+.NavTab i
+{
+    color: black;
+    position: absolute;
+    right: 30px;
+    font-size: 40;
 }
 
 
@@ -70,7 +78,7 @@
     width:100px;
 }
 
-.iconBox img{    
+.iconBox img{
     margin-left: 5px;
     margin-right: 5px;
     margin-top: 5px;
