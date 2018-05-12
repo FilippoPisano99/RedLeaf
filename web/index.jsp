@@ -19,7 +19,7 @@
             pageName = "Rubrica";
             break;
         case "3":
-            pageName = "Fortnitri";
+            pageName = "Fornitori";
             break;
         case "4":
             pageName = "Articoli";
