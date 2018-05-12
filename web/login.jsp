@@ -23,7 +23,7 @@
 
             if(!userPwd.equals("null") && !userName.equals("null"))
             {
-                String url = "jdbc:mysql://192.168.1.6:3306/gestionaleazienda?zeroDateTimeBehavior=convertToNull";
+                String url = "jdbc:mysql://laptop-pisi:3306/gestionaleazienda?zeroDateTimeBehavior=convertToNull";
                 //WE
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
                 Connection DB = DriverManager.getConnection(url,"root" , "vertrigo");
