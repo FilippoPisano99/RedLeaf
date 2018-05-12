@@ -97,6 +97,7 @@
                         %><%@include file="ART/listaSedi.jsp" %><%
                     break;
                     case "41":
+                        %><%@include file="ART/listaArticoli.jsp" %><%
                     break;
                     case "411":
 

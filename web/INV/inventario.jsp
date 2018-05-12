@@ -63,9 +63,10 @@
         <select name="id_articolo">
             <%
             //<option></option>
-                rs = executeQuery(session, "SELECT a.id_articolo,a.nome FROM articolo a, rubrica r "
-                        + "WHERE r.tipo='F' AND "
-                        + "r.id_sede = "+session.getAttribute("id_sede"));
+                rs = executeQuery(session, "SELECT a.id_articolo,a.nome, r.nome "+
+                "FROM articolo a RIGHT JOIN rubrica r "+
+                        "ON a.id_rubrica = r.id_rubrica " +
+                        "WHERE r.tipo='F' AND  r.id_sede = "+session.getAttribute("id_sede"));
                 while(rs.next())
                 {
                     %><option value="<%= rs.getString("id_articolo") %>"><%= rs.getString("nome") %></option><%
