@@ -2,7 +2,12 @@
 <%@page import="java.sql.*"%>
 <div class="NavTab">
     <a href="index.jsp?IDPage=11&id_sede=<%= request.getParameter("id_sede") %>"><h2>< BACK</h2></a>
-    <i class="material-icons md-light" style="color:black;" onclick="showAddBox()">add_circle_outline</i>
+    <%
+    if(request.getParameter("inventario_aperto") !=null && request.getParameter("inventario_aperto").equals("true"))
+    {
+        out.println("<i class=\"material-icons md-light\" style=\"color:black;\" onclick=\"showAddBox()\">add_circle_outline</i>");
+    }
+    %>
 </div>
 
 <h2>Prodotti :</h2>
