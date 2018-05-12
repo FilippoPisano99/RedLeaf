@@ -23,21 +23,19 @@
             String nome = request.getParameter("nome");
             String barcode = request.getParameter("barcode");
             String costo = request.getParameter("costo");
-    
+
             executeInsert(session,"INSERT INTO articolo VALUES (NULL,"+id_rubrica+","+nome+"', '"+barcode+"', "+costo+" )");
-            
+
         }
-        
+
     }
 
 %>
 
 
 <div class="sideModifyBox">
-<% 
-    stmt = DB.createStatement();  
-    
-    rs = stmt.executeQuery("SELECT tipo FROM rubrica WHERE id_rubrica = " + request.getParameter("id_rubrica") );
+<%
+    rs = executeQuery(session,"SELECT tipo FROM rubrica WHERE id_rubrica = " + request.getParameter("id_rubrica") );
     while (rs.next())
     {
         if(rs.getString("tipo").equals("F"))
@@ -55,7 +53,7 @@
 
                 <p>Barcode:</p>
                 <input type="text" name="barcode">
-                
+
                 <p>Costo:</p>
                 <input type="number" min="0" step="0.01" name="costo">
 
@@ -83,18 +81,18 @@
                 <option value="email">Email</option>
                 <option value="partita_iva">P.IVA</option>
             </select>
-            
+
             <p>Nuovo valore:</p>
             <input name="new_value">
-            
+
             <input type='submit' class="submitButton" value='Modifica'>
 
     </form>
 </div>
-            
-<% 
-      
-    rs = stmt.executeQuery("SELECT * FROM rubrica WHERE id_rubrica = " + request.getParameter("id_rubrica") );
+
+<%
+
+    rs = executeQuery(session,"SELECT * FROM rubrica WHERE id_rubrica = " + request.getParameter("id_rubrica") );
     while(rs.next())
     {
         String nome = rs.getString("nome");
@@ -106,7 +104,7 @@
         String p_iva = rs.getString("partita_iva");
         String cf = rs.getString("codice_fiscale");
         String tipo = rs.getString("tipo");
-        %> 
+        %>
         <div class="identityCardBox">
             <h2><%= nome + " " + cognome %></h2>
             <strong><%= tipo.equals("F")? "FORNITORE" : "CLIENTE" %></strong>
@@ -115,10 +113,9 @@
             <p>E-mail: <a href="mailto:<%= email %>"><%= email %></a></p>
             <p>Partita IVA: <%= p_iva %></p>
             <p>Codice fiscale: <%= cf %></p>
-        </div>   
-        <%  
-            
+        </div>
+        <%
+
         break;
-    } 
+    }
   %>
-  

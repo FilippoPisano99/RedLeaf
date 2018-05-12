@@ -94,8 +94,7 @@
     </tr>
   <%
     String id_inventario = request.getParameter("id_inventario");
-    stmt = DB.createStatement();
-    rs = stmt.executeQuery("SELECT * FROM articolo a, dettaglioInventario dett "
+    rs = executeQuery(session,"SELECT * FROM articolo a, dettaglioInventario dett "
             + "WHERE a.id_articolo = dett.id_articolo "
             + "AND dett.id_inventario = " + id_inventario);
     while(rs.next())

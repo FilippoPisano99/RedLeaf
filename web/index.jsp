@@ -7,30 +7,29 @@
     String extraParam = session.getAttribute("extraParam")+"";
 
     String pageName = "Homepage";
-    switch(IDPage){
+    String pageCategory = IDPage.charAt(0)+"";
+    switch(pageCategory){
+        case "0":
+            pageName = "Homepage";
+            break;
         case "1":
-            pageName = "Inventario";
-            break;
-        case "11":
-            pageName = "Inventario";
-            break;
-        case "111":
             pageName = "Inventario";
             break;
         case "2":
             pageName = "Rubrica";
             break;
-        case "21":
-            pageName = "Rubrica";
+        case "3":
+            pageName = "Fortnitri";
             break;
-        case "211":
-            pageName = "Rubrica";
+        case "4":
+            pageName = "Articoli";
             break;
     }
 
     String url = "jdbc:mysql://laptop-pisi:3306/gestionaleazienda?zeroDateTimeBehavior=convertToNull";
     Class.forName("com.mysql.jdbc.Driver").newInstance();
     Connection DB = DriverManager.getConnection(url,"root" , "vertrigo");
+    ResultSet rs;
 
     session.setAttribute("DB", DB);
 
@@ -73,7 +72,7 @@
                     case "0":
                         %><%@include file="dashboard.jsp" %><%
                     break;
-
+                    /////////////////////////////////////////////////////////
                     case "1":
                         %><%@include file="INV/listaSedi.jsp" %><%
                     break;
@@ -83,7 +82,7 @@
                     case "111":
                         %><%@include file="INV/inventario.jsp" %><%
                     break;
-
+                    /////////////////////////////////////////////////////////
                     case "2":
                         %><%@include file="RUB/listaSedi.jsp" %><%
                     break;
@@ -93,7 +92,15 @@
                     case "211":
                         %><%@include file="RUB/contatto.jsp" %><%
                     break;
+                    /////////////////////////////////////////////////////////
+                    case "4":
+                        %><%@include file="ART/listaSedi.jsp" %><%
+                    break;
+                    case "41":
+                    break;
+                    case "411":
 
+                    break;
                 }
             %>
             </div>

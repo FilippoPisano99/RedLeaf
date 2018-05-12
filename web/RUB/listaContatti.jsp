@@ -7,7 +7,7 @@
 <h2>Selezionare un contatto</h2>
 <%
     session.setAttribute("id_sede", request.getParameter("id_sede"));
-    
+
     if(request.getParameter("action")!=null)
     {
         if(request.getParameter("action").equals("create")){
@@ -16,12 +16,12 @@
                 request.getParameter("indirizzo"),request.getParameter("telefono"),
                 request.getParameter("email"),request.getParameter("citta"),
                 request.getParameter("cf"),request.getParameter("piva"),request.getParameter("tipo")};
-            
-            
+
+
             if( isAllFieldFilled(fields) )
             {
-                if( (!containsNumbers(request.getParameter("nome"))) && (!containsNumbers(request.getParameter("cognome"))) 
-                        && (!containsNumbers(request.getParameter("citta"))) && isPhoneNumber(request.getParameter("telefono")) 
+                if( (!containsNumbers(request.getParameter("nome"))) && (!containsNumbers(request.getParameter("cognome")))
+                        && (!containsNumbers(request.getParameter("citta"))) && isPhoneNumber(request.getParameter("telefono"))
                         && isCF(request.getParameter("cf")))
                 {
                     executeInsert(session, "INSERT INTO rubrica "
@@ -44,7 +44,7 @@
             executeUpdate(session,"DELETE FROM rubrica WHERE id_rubrica = " +request.getParameter("id_rubrica"));
         }
     }
-    
+
 %>
 <div class="sideModifyBox">
     <form class='toolBoxForm' method="get" action='index.jsp'>
@@ -54,7 +54,7 @@
             <input type ="hidden" value="21" name="IDPage">
             <input type ="hidden" value="create" name="action">
             <input type ="hidden" value="<%= session.getAttribute("id_sede") %>" name="id_sede">
-            
+
             <p>Nome:</p><input type='text' name='nome'><br>
             <p>Cognome:</p><input type='text' name='cognome'><br>
             <p>Indirizzo:</p><input type='text' name='indirizzo'><br>
@@ -66,12 +66,12 @@
             <p>Tipo:</p><br>
             <input type="radio" name="tipo" value="C" checked="checked"><p>Cliente</p><br>
             <input type="radio" name="tipo" value="F"><p>Fornitore</p>
-            
+
             <input type='submit' class="submitButton" value='Aggiungi'>
 
     </form>
 </div>
-        
+
 <table id="MainTableStyle">
     <tr>
         <th>NOMINATIVO</th>
@@ -79,9 +79,8 @@
         <th>P.IVA</th>
         <th>VISUALIZZA</th>
     </tr>
-  <% 
-    stmt = DB.createStatement();    
-    rs = stmt.executeQuery("SELECT * FROM rubrica WHERE id_sede = " + session.getAttribute("id_sede") );
+  <%
+    rs = executeQuery(session,"SELECT * FROM rubrica WHERE id_sede = " + session.getAttribute("id_sede") );
     while(rs.next())
     {
         String id_rubrica = rs.getString("id_rubrica");
@@ -89,7 +88,7 @@
         String cognome = rs.getString("cognome");
         String tel = rs.getString("telefono");
         String p_iva = rs.getString("partita_iva");
-        %> 
+        %>
         <tr>
             <td><%= nome +" " + cognome %></td>
             <td><%= tel %></td>
@@ -104,9 +103,9 @@
                     <i class="material-icons md-light" style="color:black;">delete</i>
                 </a>
             </td>
-            
+
         </tr>
-        <%     
-    } 
+        <%
+    }
   %>
 </table>

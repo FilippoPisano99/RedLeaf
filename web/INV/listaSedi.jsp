@@ -12,9 +12,8 @@
         <th>APERTO DAL</th>
         <th>APRI</th>
     </tr>
-  <% 
-    Statement stmt = DB.createStatement();
-    ResultSet rs =stmt.executeQuery("SELECT * FROM sede");
+  <%
+    rs = executeQuery(session,"SELECT * FROM sede");
     while(rs.next())
     {
         String id_sede = rs.getString("id_sede");
@@ -23,7 +22,7 @@
         Date aperto_dal = rs.getDate("aperto_dal");
         SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
         String date = formatoData.format(aperto_dal);
-        %> 
+        %>
         <tr>
             <td><%= id_sede %></td>
             <td><%= nome %></td>
@@ -35,7 +34,7 @@
                 </a>
             </td>
         </tr>
-        <%     
-    } 
+        <%
+    }
   %>
 </table>

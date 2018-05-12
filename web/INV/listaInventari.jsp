@@ -73,8 +73,7 @@
         <th>VISUALIZZA</th>
     </tr>
   <%
-    stmt = DB.createStatement();
-    rs = stmt.executeQuery("SELECT * FROM inventario WHERE id_sede = " + session.getAttribute("id_sede") );
+    rs = executeQuery(session,"SELECT * FROM inventario WHERE id_sede = " + session.getAttribute("id_sede") );
     while(rs.next())
     {
         String id_inventario = rs.getString("id_inventario");
