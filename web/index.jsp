@@ -26,7 +26,7 @@
             break;
     }
 
-    String url = "jdbc:mysql://laptop-pisi:3306/gestionaleazienda?zeroDateTimeBehavior=convertToNull";
+    String url = "jdbc:mysql://localhost:3306/gestionaleazienda";
     Class.forName("com.mysql.jdbc.Driver").newInstance();
     Connection DB = DriverManager.getConnection(url,"root" , "vertrigo");
     ResultSet rs;
