@@ -2,12 +2,11 @@
 <%@page import="java.util.Map"%>
 <%@page import="java.sql.*"%>
  <div class="NavTab">
-    <a href="index.jsp?IDPage=2"><h2>< BACK</h2></a>
+    <a href="index.jsp?IDPage=-1"><h2>< BACK</h2></a>
 </div>
-<h2>Selezionare un contatto</h2>
 <%
     session.setAttribute("id_sede", request.getParameter("id_sede"));
-
+/*
     if(request.getParameter("action")!=null)
     {
         if(request.getParameter("action").equals("create")){
@@ -16,7 +15,6 @@
                 request.getParameter("indirizzo"),request.getParameter("telefono"),
                 request.getParameter("email"),request.getParameter("citta"),
                 request.getParameter("cf"),request.getParameter("piva"),request.getParameter("tipo")};
-
 
             if( isAllFieldFilled(fields) )
             {
@@ -39,19 +37,59 @@
                             + " '"+request.getParameter("tipo")+"')");
                 }
             }
-        }else if(request.getParameter("action").equals("delete"))
+        }
+        else if(request.getParameter("action").equals("delete"))
         {
-            executeUpdate(session,"DELETE FROM rubrica WHERE id_rubrica = " +request.getParameter("id_rubrica"));
+            executeUpdate(session,"DELETE FROM articolo WHERE id_articolo = " +request.getParameter("id_articolo"));
         }
     }
-
+*/
 %>
+
+<table id="MainTableStyle">
+    <tr>
+        <th>NOMINATIVO</th>
+        <th>TELEFONO</th>
+        <th>RUOLO</th>
+    </tr>
+  <%
+    rs = executeQuery(session,"SELECT r.id_rubrica,r.nome,r.cognome,r.telefono,r.lavoro FROM rubrica r WHERE r.tipo = 'D' AND r.id_sede=" + session.getAttribute("id_sede") );
+    while(rs.next())
+    {
+        out.println("<tr>");
+
+        out.println("<td>");
+        out.println(rs.getString("nome")+" "+rs.getString("cognome"));
+        out.println("</td>");
+
+
+        out.println("<td>");
+        out.println(rs.getString("telefono"));
+        out.println("</td>");
+
+
+        out.println("<td>");
+        out.println(rs.getString("lavoro"));
+        out.println("</td>");
+
+        out.println("<td class='iconTable'>");
+        out.println("<a href='index.jsp?IDPage=-111&id_sede='"+session.getAttribute("id_sede")+"'");
+        out.println("<i class='material-icons md-light' style='color:black;'>open_in_browser</i>");
+        out.println("</a>");
+        out.println("</td>");
+
+
+        out.println("</tr>");
+    }
+  %>
+</table>
+
 <div class="sideModifyBox">
     <form class='toolBoxForm' method="get" action='index.jsp'>
             <div class="TitleTab">
                 <h3>Aggiungi un contatto</h3>
             </div>
-            <input type ="hidden" value="21" name="IDPage">
+            <input type ="hidden" value="-11" name="IDPage">
             <input type ="hidden" value="create" name="action">
             <input type ="hidden" value="<%= session.getAttribute("id_sede") %>" name="id_sede">
 
@@ -71,41 +109,3 @@
 
     </form>
 </div>
-
-<table id="MainTableStyle">
-    <tr>
-        <th>NOMINATIVO</th>
-        <th>TELEFONO</th>
-        <th>P.IVA</th>
-        <th>VISUALIZZA</th>
-    </tr>
-  <%
-    rs = executeQuery(session,"SELECT * FROM rubrica WHERE (tipo='C' OR tipo='F') AND id_sede = " + session.getAttribute("id_sede") );
-    while(rs.next())
-    {
-        String id_rubrica = rs.getString("id_rubrica");
-        String nome = rs.getString("nome");
-        String cognome = rs.getString("cognome");
-        String tel = rs.getString("telefono");
-        String p_iva = rs.getString("partita_iva");
-        %>
-        <tr>
-            <td><%= nome +" " + cognome %></td>
-            <td><%= tel %></td>
-            <td><%= p_iva %></td>
-            <td class="iconTable">
-                <a href="index.jsp?IDPage=211&id_rubrica=<%=id_rubrica%>">
-                    <i class="material-icons md-light" style="color:black;">open_in_browser</i>
-                </a>
-            </td>
-            <td class="iconTable">
-                <a href="index.jsp?IDPage=21&id_rubrica=<%=id_rubrica%>&id_sede=<%=request.getParameter("id_sede")%>&action=delete">
-                    <i class="material-icons md-light" style="color:black;">delete</i>
-                </a>
-            </td>
-
-        </tr>
-        <%
-    }
-  %>
-</table>

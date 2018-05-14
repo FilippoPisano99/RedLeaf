@@ -29,7 +29,7 @@
 <div class="iconBox">
     <img src="img/Articolo.png" width="50px" height="50px">
     <div class="iconBoxText">
-        <p>Arrticoli</p>
+        <p>Articoli</p>
     </div>
 </div>
 </a>

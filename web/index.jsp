@@ -1,7 +1,7 @@
 <%@page import="java.sql.*"%>
 <%
     String userName = session.getAttribute("userName")+"";
-    String userRole = session.getAttribute("userRole")+"";
+    String role = session.getAttribute("role")+"";
     String IDPage = request.getParameter("IDPage")+"";
 
     String extraParam = session.getAttribute("extraParam")+"";
@@ -9,6 +9,9 @@
     String pageName = "Homepage";
     String pageCategory = IDPage.charAt(0)+"";
     switch(pageCategory){
+        case "-1":
+            pageName = "Gestione Dipendenti";
+            break;
         case "0":
             pageName = "Homepage";
             break;
@@ -72,6 +75,13 @@
 
             <%
                 switch(IDPage){
+                    case "-1":
+                        %><%@include file="DIP/listaSedi.jsp" %><%
+                    break;
+                    case "-11":
+                        %><%@include file="DIP/gestioneDipendenti.jsp" %><%
+                    break;
+                    /////////////////////////////////////////////////////////
                     case "0":
                         %><%@include file="dashboard.jsp" %><%
                     break;

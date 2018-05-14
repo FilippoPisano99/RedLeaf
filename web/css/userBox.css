@@ -28,6 +28,11 @@
 
 .UserTabBtn
 {
-    background-color: #635c5c;
     padding: 5px;
+    border-bottom: 2px solid #757575;
+}
+.UserTabBtn:hover
+{
+    background-color: white;
+    color: black;
 }
