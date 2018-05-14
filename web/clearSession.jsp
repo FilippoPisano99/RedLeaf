@@ -1,7 +1,7 @@
 <%@page import="java.sql.*"%>
 <%
     try{
-
+        session.setAttribute("tabPage",1);
         session.setAttribute("id_sede","");
         session.setAttribute("id_inventario","");
         session.setAttribute("inventario_aperto","");

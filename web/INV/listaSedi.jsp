@@ -29,7 +29,7 @@
             <td><%= indirizzo %></td>
             <td><%= date %></td>
             <td class="iconTable">
-                <a href="index.jsp?IDPage=11&id_sede=<%= id_sede %>">
+                <a href="index.jsp?IDPage=11&id_sede=<%= id_sede %>&tabPage=1">
                     <i class="material-icons md-light" style="color:black;">open_in_browser</i>
                 </a>
             </td>

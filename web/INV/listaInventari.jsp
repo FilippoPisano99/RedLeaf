@@ -30,8 +30,8 @@
             executeUpdate(session,"DELETE FROM inventario WHERE id_inventario = "+request.getParameter("id_inventario") );
         }
     }
-
 %>
+
 <div class="sideModifyBox">
     <form class='toolBoxForm' style="display:none"  method="get" action='index.jsp' id="addInv">
             <div class="TitleTab">
@@ -39,6 +39,7 @@
             </div>
             <input type ="hidden" value="11" name="IDPage">
             <input type ="hidden" value="open" name="action">
+            <input type="hidden" name="tabPage" value="<%= session.getAttribute("tabPage") %>">
             <p>Descrizione:</p><input type='text' name='descrizione'><br>
             <p>Iniziato il:</p><input type='date' name='iniziato_il'><br>
             <input type ="hidden" value="<%= session.getAttribute("id_sede") %>" name="id_sede">
@@ -52,6 +53,7 @@
             </div>
             <input type ="hidden" value="11" name="IDPage">
             <input type ="hidden" value="close" name="action">
+            <input type="hidden" name="tabPage" value="<%= session.getAttribute("tabPage") %>">
             <input type='hidden' name='id_inventario'>
             <p id="closeIDText">ID:</p><br>
             <p>Chiuso il:</p><input type='date' name='finito_il'><br>
@@ -71,6 +73,48 @@
         <th>CHIUDI</th>
         <th>SCARICA</th>
         <th>VISUALIZZA</th>
+        <th>
+        <%
+            if(getTabPage( session ) > 1){
+                out.println("<a href='index.jsp?IDPage=11"+
+                    "&id_sede="+session.getAttribute("id_sede")+
+                    "&tabPage="+( getTabPage(session)-1 )+"'>");
+                out.println("<i class=\"material-icons\">first_page</i>");
+                out.println("</a>");
+            }
+
+        %>
+        </th>
+        <th class="blank-arrow-btn">
+        <%
+        try{
+
+            String countSql = "SELECT COUNT(*) as 'N'"+
+            "FROM inventario i INNER JOIN sede s "+
+        	"ON i.id_sede = s  .id_sede "+
+        	"WHERE s.id_sede = " + session.getAttribute("id_sede");
+
+            int count = 0;
+
+            rs=executeQuery(session,countSql);
+            while (rs.next()) {
+                count = rs.getInt("N");
+            }
+            int diff = getDiff(count,session);
+
+            if(diff > 15)
+            {
+                out.println("<a href='index.jsp?IDPage=11&id_sede=3&tabPage="+(getTabPage( session )+1)+"'>");
+                out.println("<i class=\"material-icons\">last_page</i>");
+                out.println("</a>");
+            }
+
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        %>
+        </th>
+
     </tr>
   <%
     rs = executeQuery(session,"SELECT * FROM inventario WHERE id_sede = " + session.getAttribute("id_sede") );
@@ -121,7 +165,7 @@
                 </a>
             </td>
             <td class="iconTable">
-                <a href="index.jsp?IDPage=111&id_sede=<%= session.getAttribute("id_sede") %>&id_inventario=<%= id_inventario %>&inventario_aperto=<%= data_fine_string.equals("---") %>">
+                <a href="index.jsp?IDPage=111&id_sede=<%= session.getAttribute("id_sede") %>&id_inventario=<%= id_inventario %>&tabPage=1&inventario_aperto=<%= data_fine_string.equals("---") %>">
                     <i class="material-icons md-light" style="color:black;">open_in_browser</i>
                 </a>
             </td>
@@ -147,6 +191,7 @@
         <input type="hidden" name="action" value="delete">
         <input type="hidden" name="IDPage" value="11">
         <input type="hidden" name="id_sede" value="">
+        <input type="hidden" name="tabPage" value="<%= getTabPage( session ) %>">
         <input type="hidden" name="id_inventario" value="">
         <input type="submit" id="YesDeleteBtn" value="SI" >
         <input type="button" id="NoDeleteBtn" onclick="toggleAskDeleteBox()" value="NO" >

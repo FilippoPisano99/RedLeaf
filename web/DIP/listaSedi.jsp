@@ -1,5 +1,11 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.*"%>
+<%
+    if(!session.getAttribute("role").equals("Admin"))
+    {
+        response.sendRedirect("clearSession.jsp");
+    }
+%>
 <div class="NavTab">
     <a href="index.jsp?IDPage=0"><h2>< BACK</h2></a>
 </div>

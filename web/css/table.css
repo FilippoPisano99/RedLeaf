@@ -27,3 +27,8 @@ th{
 {
     user-select: none;
 }
+
+.blank-arrow-btn
+{
+    width: 24px;
+}

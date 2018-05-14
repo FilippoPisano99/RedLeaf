@@ -13,6 +13,7 @@
 <h2>Prodotti :</h2>
 
 <%
+    session.setAttribute("tabPage",Integer.parseInt(request.getParameter("tabPage")));
     session.setAttribute("inventario_aperto", request.getParameter("inventario_aperto") );
     session.setAttribute("id_inventario",request.getParameter("id_inventario"));
 
@@ -50,39 +51,38 @@
     }
 
 
-    if( session.getAttribute("inventario_aperto")!=null && session.getAttribute("inventario_aperto").equals("true"))
-    {
-%>
-    <form class='toolBoxForm' id="addArt"  style="display:none;" method="get" action='index.jsp'>
-        <input type="hidden" name="action" value="add">
-        <div class="TitleTab">
-            <h3>Aggiungi un prodotto</h3>
-        </div>
-        <input type ="hidden" value="111" name="IDPage">
-        <p>Seleziona un prodotto:</p>
-        <select name="id_articolo">
-            <%
-            //<option></option>
-                rs = executeQuery(session, "SELECT a.id_articolo,a.nome, r.nome "+
-                "FROM articolo a RIGHT JOIN rubrica r "+
-                        "ON a.id_rubrica = r.id_rubrica " +
-                        "WHERE r.tipo='F' AND  r.id_sede = "+session.getAttribute("id_sede"));
-                while(rs.next())
-                {
-                    %><option value="<%= rs.getString("id_articolo") %>"><%= rs.getString("nome") %></option><%
-                }
-            %>
-        </select>
-        <br>
-        <p>Qta:</p><input type='number' name='qta' min='0'><br>
-        <input type ="hidden" value="<%= session.getAttribute("id_sede") %>" name="id_sede">
-        <input type ="hidden" value="true" name="inventario_aperto">
-        <input type ="hidden" value="<%= session.getAttribute("id_inventario") %>" name="id_inventario">
+    if( session.getAttribute("inventario_aperto")!=null && session.getAttribute("inventario_aperto").equals("true")){
+    %>
+        <form class='toolBoxForm' id="addArt"  style="display:none;" method="get" action='index.jsp'>
+            <input type="hidden" name="action" value="add">
+            <div class="TitleTab">
+                <h3>Aggiungi un prodotto</h3>
+            </div>
+            <input type ="hidden" value="111" name="IDPage">
+            <p>Seleziona un prodotto:</p>
+            <select name="id_articolo">
+                <%
+                //<option></option>
+                    rs = executeQuery(session, "SELECT a.id_articolo,a.nome, r.nome "+
+                    "FROM articolo a RIGHT JOIN rubrica r "+
+                            "ON a.id_rubrica = r.id_rubrica " +
+                            "WHERE r.tipo='F' AND  r.id_sede = "+session.getAttribute("id_sede"));
+                    while(rs.next())
+                    {
+                        %><option value="<%= rs.getString("id_articolo") %>"><%= rs.getString("nome") %></option><%
+                    }
+                %>
+            </select>
+            <br>
+            <p>Qta:</p><input type='number' name='qta' min='0'><br>
+            <input type ="hidden" value="<%= session.getAttribute("id_sede") %>" name="id_sede">
+            <input type ="hidden" value="true" name="inventario_aperto">
+            <input type ="hidden" value="<%= session.getAttribute("id_inventario") %>" name="id_inventario">
+            <input type="hidden" name="tabPage" value="<%= getTabPage( session ) %>">
+            <input type='submit' class="submitButton" value='Aggiungi'>
 
-        <input type='submit' class="submitButton" value='Aggiungi'>
-
-    </form>
-<%
+        </form>
+    <%
     }
 
 %>
@@ -92,12 +92,60 @@
         <th>BARCODE</th>
         <th>QTA</th>
         <th>COSTO</th>
+        <th>
+        <%
+            if(getTabPage( session ) > 1){
+                out.println("<a href='index.jsp?IDPage=111&id_inventario="+session.getAttribute("id_inventario")+
+                    "&id_sede="+session.getAttribute("id_sede")+
+                    "&tabPage="+( getTabPage(session)-1 )+
+                    "&inventario_aperto="+ request.getParameter("inventario_aperto")+"'>");
+                out.println("<i class=\"material-icons\">first_page</i>");
+                out.println("</a>");
+            }
+
+        %>
+        </th>
+        <th class="blank-arrow-btn">
+            <%
+            try
+            {
+
+                String countSql = "SELECT COUNT(*) as 'N'"+
+                        "FROM dettaglioinventario di "+
+                    	"WHERE di.id_inventario = " + session.getAttribute("id_inventario");
+
+                int count = 0;
+
+                rs=executeQuery(session,countSql);
+                while (rs.next()) {
+                    count = rs.getInt("N");
+                }
+
+                int diff = getDiff(count,session);
+
+                if(diff > 15)
+                {
+
+                    out.println("<a href='index.jsp?IDPage=111&id_inventario="+session.getAttribute("id_inventario")+
+                        "&id_sede="+session.getAttribute("id_sede")+
+                        "&tabPage="+( getTabPage(session)+1 )+
+                        "&inventario_aperto="+ request.getParameter("inventario_aperto")+"' '>");
+                    out.println("<i class=\"material-icons\">last_page</i>");
+                    out.println("</a>");
+                }
+
+            }catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            %>
+        </th>
     </tr>
   <%
     String id_inventario = request.getParameter("id_inventario");
     rs = executeQuery(session,"SELECT * FROM articolo a, dettaglioInventario dett "
             + "WHERE a.id_articolo = dett.id_articolo "
-            + "AND dett.id_inventario = " + id_inventario);
+            + "AND dett.id_inventario = " + id_inventario+
+            " LIMIT "+(getNextIdxPage(session))+",15");
     while(rs.next())
     {
         String id_dettaglioInventario = rs.getString("id_dettaglioInventario");
@@ -139,6 +187,7 @@
         <input type="hidden" name="id_sede" value="">
         <input type="hidden" name="id_inventario" value="">
         <input type="hidden" name="id_dettaglioInventario" value="">
+        <input type="hidden" name="tabPage" value="<%= getTabPage( session ) %>">
         <input  type="hidden" name="inventario_aperto" value="<%= session.getAttribute("inventario_aperto")%>">
         <input type="submit" id="YesDeleteBtn" value="SI" >
         <input type="button" id="NoDeleteBtn" onclick="toggleAskDeleteBox()" value="NO" >

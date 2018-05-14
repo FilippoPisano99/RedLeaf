@@ -6,8 +6,9 @@
 </div>
 <h2>Selezionare un articolo</h2>
 <%
+    session.setAttribute("tabPage",Integer.parseInt(request.getParameter("tabPage")));
     session.setAttribute("id_sede", request.getParameter("id_sede"));
-
+/*
     if(request.getParameter("action")!=null)
     {
         if(request.getParameter("action").equals("create")){
@@ -44,7 +45,7 @@
             executeUpdate(session,"DELETE FROM articolo WHERE id_articolo = " +request.getParameter("id_articolo"));
         }
     }
-
+*/
 %>
 <div class="sideModifyBox">
     <form class='toolBoxForm' method="get" action='index.jsp'>
@@ -77,6 +78,48 @@
         <th>NOME</th>
         <th>BARCODE</th>
         <th>FORNITORE</th>
+        <th>
+        <%
+            if(getTabPage( session ) > 1){
+                out.println("<a href='index.jsp?IDPage=41&id_sede=3&tabPage="+(getTabPage( session )-1)+"'>");
+                out.println("<i class=\"material-icons\">first_page</i>");
+                out.println("</a>");
+            }
+
+        %>
+        </th>
+        <th>
+
+        <%
+        try{
+
+            String countArticoliSql = "SELECT COUNT(*) as 'N'"+
+            "FROM (articolo a INNER JOIN rubrica r ON r.id_rubrica = a.id_rubrica) "+
+        	"INNER JOIN sede s "+
+        	"ON s.id_sede = r.id_sede "+
+        	"WHERE s.id_sede = " + session.getAttribute("id_sede");
+
+            int count = 0;
+
+            rs=executeQuery(session,countArticoliSql);
+            while (rs.next()) {
+                count = rs.getInt("N");
+            }
+
+            int diff = getDiff(count,session);
+
+            if(diff > 15)
+            {
+                out.println("<a href='index.jsp?IDPage=41&id_sede=3&tabPage="+(getTabPage( session )+1)+"'>");
+                out.println("<i class=\"material-icons\">last_page</i>");
+                out.println("</a>");
+            }
+
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        %>
+        </th>
     </tr>
   <%
     rs = executeQuery(session,"SELECT a.id_articolo, a.nome , a.barcode , r.id_rubrica , r.nome AS \"NomeFornitore\", r.cognome AS \"CognomeFornitore\" "+
@@ -84,7 +127,8 @@
 	                          "ON r.id_rubrica = a.id_rubrica) "+
                                 "INNER JOIN sede s "+
     		                         "ON s.id_sede = r.id_sede "+
-                        "WHERE s.id_sede =" + session.getAttribute("id_sede") );
+                        "WHERE s.id_sede =" + session.getAttribute("id_sede")+
+                        " LIMIT "+((((int) session.getAttribute("tabPage"))-1)*15)+",15" );
     while(rs.next())
     {
         String id_articolo = rs.getString("id_articolo");

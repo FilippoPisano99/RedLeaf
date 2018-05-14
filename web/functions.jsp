@@ -24,7 +24,7 @@
     }
 
     public boolean containsNumbers(String s)
-    {   
+    {
         return s.matches(".*\\d.*");
     }
 
@@ -74,5 +74,19 @@
 
         return output;
     }
+
+    public int getTabPage( HttpSession session )
+    {
+        return ( (int) session.getAttribute("tabPage") );
+    }
+    public int getNextIdxPage( HttpSession session )
+    {
+        return ( ( ( getTabPage( session ) )-1 )*15 );
+    }
+    public int getDiff(int count, HttpSession session )
+    {
+        return count-getNextIdxPage( session );
+    }
+
 
 %>

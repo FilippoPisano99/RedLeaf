@@ -78,6 +78,52 @@
         <th>TELEFONO</th>
         <th>P.IVA</th>
         <th>VISUALIZZA</th>
+        <th>
+        <%
+            if(getTabPage( session ) > 1){
+                out.println("<a href='index.jsp?IDPage=21"+
+                    "&id_sede="+session.getAttribute("id_sede")+
+                    "&tabPage="+( getTabPage(session)-1 )+"'>");
+                out.println("<i class=\"material-icons\">first_page</i>");
+                out.println("</a>");
+            }
+        %>
+        </th>
+        <th class="blank-arrow-btn">
+            <%
+            try
+            {
+
+                String countSql = "SELECT COUNT(*) as 'N'"+
+                        "FROM rubrica r "+
+                    	"WHERE (tipo='C' OR tipo='F')  AND r.id_sede = " + session.getAttribute("id_sede");
+
+                int count = 0;
+
+                rs=executeQuery(session,countSql);
+                while (rs.next()) {
+                    count = rs.getInt("N");
+                }
+
+                int diff = getDiff(count,session);
+
+                if(diff > 15)
+                {
+
+                    out.println("<a href='index.jsp?IDPage=111&id_inventario="+session.getAttribute("id_inventario")+
+                        "&id_sede="+session.getAttribute("id_sede")+
+                        "&tabPage="+( getTabPage(session)+1 )+
+                        "&inventario_aperto="+ request.getParameter("inventario_aperto")+"' '>");
+                    out.println("<i class=\"material-icons\">last_page</i>");
+                    out.println("</a>");
+                }
+
+            }catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            %>
+        </th>
+
     </tr>
   <%
     rs = executeQuery(session,"SELECT * FROM rubrica WHERE (tipo='C' OR tipo='F') AND id_sede = " + session.getAttribute("id_sede") );
