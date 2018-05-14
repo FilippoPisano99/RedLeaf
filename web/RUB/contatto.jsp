@@ -24,10 +24,8 @@
             String barcode = request.getParameter("barcode");
             String costo = request.getParameter("costo");
 
-            boolean fine = executeInsert(session,"INSERT INTO articolo VALUES (NULL,"+id_rubrica+",'"+nome+"', '"+barcode+"', "+costo+" )");
-            if(!fine){
-                out.println("ERRORE SQL-> INSERT INTO articolo VALUES (NULL,"+id_rubrica+",'"+nome+"', '"+barcode+"', "+costo+" )");
-            }
+            executeInsert(session,"INSERT INTO articolo VALUES (NULL,"+id_rubrica+",'"+nome+"', '"+barcode+"', "+costo+" )");
+
         }
 
     }
