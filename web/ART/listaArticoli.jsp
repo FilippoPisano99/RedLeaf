@@ -132,7 +132,7 @@
             <td><%= barcode %></td>
             <td><%= NomeFornitore + " " + CognomeFornitore %></td>
             <td class="iconTable">
-                <a href="index.jsp?IDPage=411&id_articolo=<%=id_articolo%>">
+                <a href="index.jsp?IDPage=411&tabPage=1&id_articolo=<%=id_articolo%>&id_sede=<%=request.getParameter("id_sede")%>">
                     <i class="material-icons md-light" style="color:black;">open_in_browser</i>
                 </a>
             </td>

@@ -35,7 +35,7 @@ input
     outline: none;
 }
 
-input[type="submit"]
+input[type="submit"] , .submitButton
 {
     border: none;
     border-bottom: solid 1px #221f1f;

@@ -1,4 +1,5 @@
 <%@page import="java.sql.*"%>
+<%@page import="java.util.*"%>
 <%@page import="javax.servlet.http.*"%>
 <%!
 
@@ -86,6 +87,20 @@
     public int getDiff(int count, HttpSession session )
     {
         return count-getNextIdxPage( session );
+    }
+
+    public String generaStringaRandom()
+    {
+        String out ="";
+		String AlphaSet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        Random rnd = new Random();
+        for (int i = 0 ; i<60; i++ ) {
+        	char ch = AlphaSet.charAt( rnd.nextInt( AlphaSet.length() ) );
+            out += ch ;
+        }
+        return out;
+
+
     }
 
 

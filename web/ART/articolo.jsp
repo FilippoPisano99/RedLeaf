@@ -1,10 +1,10 @@
 <%@page import="java.sql.*"%>
  <div class="NavTab">
-    <a href="index.jsp?IDPage=21&tabPage=1&id_sede=<%= session.getAttribute("id_sede")%>"><h2>< BACK</h2></a>
+    <a href="index.jsp?IDPage=41&tabPage=1&id_sede=<%= session.getAttribute("id_sede")%>"><h2>< BACK</h2></a>
 </div>
 
 <%
-
+    /*
     if(request.getParameter("action")!=null)
     {
         if(request.getParameter("action").equals("modify"))
@@ -29,10 +29,10 @@
         }
 
     }
-
+    */
 %>
 
-
+<!--
 <div class="sideModifyBox">
 <%
     rs = executeQuery(session,"SELECT tipo FROM rubrica WHERE id_rubrica = " + request.getParameter("id_rubrica") );
@@ -89,30 +89,20 @@
 
     </form>
 </div>
-
+-->
 <%
 
-    rs = executeQuery(session,"SELECT * FROM rubrica WHERE id_rubrica = " + request.getParameter("id_rubrica") );
+    rs = executeQuery(session,"SELECT * FROM articolo WHERE id_articolo = " + request.getParameter("id_articolo") );
     while(rs.next())
     {
         String nome = rs.getString("nome");
-        String cognome = rs.getString("cognome");
-        String tel = rs.getString("telefono");
-        String indirizzo = rs.getString("indirizzo");
-        String citta = rs.getString("citta");
-        String email = rs.getString("email");
-        String p_iva = rs.getString("partita_iva");
-        String cf = rs.getString("codice_fiscale");
-        String tipo = rs.getString("tipo");
+        String barcode = rs.getString("barcode");
+        String costo = rs.getString("costo");
         %>
         <div class="identityCardBox">
-            <h2><%= nome + " " + cognome %></h2>
-            <strong><%= tipo.equals("F")? "FORNITORE" : "CLIENTE" %></strong>
-            <p>Indirizzo: <%= indirizzo %> ,<%= citta %></p>
-            <p>Telefono: <%= tel %></p>
-            <p>E-mail: <a href="mailto:<%= email %>"><%= email %></a></p>
-            <p>Partita IVA: <%= p_iva %></p>
-            <p>Codice fiscale: <%= cf %></p>
+            <h2><%= nome %></h2>
+            <p>Barcode: <%= barcode %></p>
+            <p>Costo: <%= costo %> &euro;</p>
         </div>
         <%
 

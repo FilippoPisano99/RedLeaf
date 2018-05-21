@@ -5,6 +5,8 @@
         <title>Gestionale d'Azienda</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="favicon.ico" />
+
         <link rel="stylesheet" type="text/css" href="css/stile.css">
         <link rel="stylesheet" type="text/css" href="css/loginBox.css">
         <link rel="stylesheet" type="text/css" href="css/managementBox.css">
@@ -17,6 +19,7 @@
             session.setAttribute("userName", null);
             session.setAttribute("role", null );
             session.setAttribute("inventario_aperto", null );
+            session.setAttribute("tabPage", 1 );
             session.setAttribute("extraParam", "" );
             String userName = (String)request.getParameter("userName")+"";
             String userPwd = (String)request.getParameter("userPwd")+"";
@@ -24,7 +27,6 @@
             if(!userPwd.equals("null") && !userName.equals("null"))
             {
                 String url = "jdbc:mysql://localhost:3306/gestionaleazienda";
-                //WE
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
                 Connection DB = DriverManager.getConnection(url,"root" , "vertrigo");
                 if(!DB.isClosed())

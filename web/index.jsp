@@ -1,4 +1,5 @@
 <%@page import="java.sql.*"%>
+<%@page import="java.sql.Date"%>
 <%
     String userName = session.getAttribute("userName")+"";
     String role = session.getAttribute("role")+"";
@@ -46,7 +47,7 @@
     <head>
         <title>Gestionale Azienda</title>
         <meta charset="UTF-8">
-
+        <link rel="shortcut icon" href="favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- LOAD UP RES -->
         <link rel="stylesheet" type="text/css" href="res/MaterialIcons.css">
@@ -113,7 +114,7 @@
                         %><%@include file="ART/listaArticoli.jsp" %><%
                     break;
                     case "411":
-
+                        %><%@include file="ART/articolo.jsp" %><%
                     break;
                 }
             %>
