@@ -156,7 +156,7 @@
         %>
         <tr>
             <td><%= nome %></td>
-            <td><%= barcode %></td>
+            <td><span class="barcode"><%= barcode %> </span></td>
             <td><%= qta %></td>
             <td><%= costo %></td>
             <%

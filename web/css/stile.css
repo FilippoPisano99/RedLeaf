@@ -1,3 +1,7 @@
+@font-face {
+	font-family: BarcodeFont;
+	src: url(../res/barcodeFont.woff);
+}
 html
 {
     font-family: 'Roboto', sans-serif;
@@ -42,4 +46,9 @@ input[type="submit"] , .submitButton
     border-right: solid 1px #221f1f;
     text-align: center;
     outline: none;
+}
+
+.barcode{
+    font-size: 15px;
+    font-family: BarcodeFont;
 }
