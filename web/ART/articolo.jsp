@@ -101,7 +101,7 @@
         %>
         <div class="identityCardBox">
             <h2><%= nome %></h2>
-            <p>Barcode: <%= barcode %></p>
+            <p>Barcode:<br><span class="barcode"><%= barcode %> </span> </p>
             <p>Costo: <%= costo %> &euro;</p>
         </div>
         <%

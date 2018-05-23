@@ -129,7 +129,7 @@
         %>
         <tr>
             <td><%= nome %></td>
-            <td><%= barcode %></td>
+            <td><span class="barcode"><%= barcode %> </span></td>
             <td><%= NomeFornitore + " " + CognomeFornitore %></td>
             <td class="iconTable">
                 <a href="index.jsp?IDPage=411&tabPage=1&id_articolo=<%=id_articolo%>&id_sede=<%=request.getParameter("id_sede")%>">
