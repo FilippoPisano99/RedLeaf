@@ -10,9 +10,6 @@ body
 {
     margin:0px;
     background-color: #f5f5f1;
-    /*background-color: rgb(232,247,219);*/
-    /*background-color: white;*/
-    /*background-color: rgb(240,240,255);*/
 }
 footer
 {
@@ -24,7 +21,7 @@ footer
 
 a{
     text-decoration: none;
-    color:white;
+    color:blue;
 }
 a:visited { text-decoration: none; color:white; }
 a:hover { text-decoration: none; color:white; }
@@ -51,4 +48,9 @@ input[type="submit"] , .submitButton
 .barcode{
     font-size: 15px;
     font-family: BarcodeFont;
+}
+
+.regLink:hover
+{
+	color: blue;
 }

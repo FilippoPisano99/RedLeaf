@@ -101,7 +101,7 @@
             <%
                 if( session.getAttribute("newRegLink") != null  )
                 {
-                    out.println("<a href='");
+                    out.println("<a class='regLink' href='");
                     out.println(session.getAttribute("newRegLink"));
                     out.println("' > <p>Condividi questo link con il nuovo utente</p> </a>");
                     session.setAttribute("newRegLink",null);

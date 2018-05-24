@@ -33,16 +33,19 @@
                 {
                     int rowCount = 0;
                     Statement stmt = DB.createStatement();
-                    ResultSet rs = stmt.executeQuery("SELECT * FROM user where userName = '"+userName+"' ");
+                    ResultSet rs = stmt.executeQuery("SELECT u.userName,u.userPwd,u.ruolo,r.nome FROM user u JOIN rubrica r ON u.id_rubrica = r.id_rubrica where userName = '" +userName+ "'");
                     while(rs.next())
                     {
                         String userNameDB =  rs.getString("userName");
                         String userPwdDB =  rs.getString("userPwd");
                         String userRoleDB =  rs.getString("ruolo");
+                        String name = rs.getString("nome");
+
                         if(userNameDB.equalsIgnoreCase(userName) && userPwdDB.equals(userPwd))
                         {
                             //Login
                             session.setAttribute("userName", userNameDB);
+                            session.setAttribute("name", name);
                             session.setAttribute("role", userRoleDB);
                             response.sendRedirect("index.jsp?IDPage=0");
 
@@ -52,7 +55,7 @@
                             %>
                             <div id="logMsgBox" >
                                 <h1>Credenziali Errate</h1>
-                                <a href="login.jsp">Torna alla pagina di login</a>
+                                <a class="regLink" href="login.jsp">Torna alla pagina di login</a>
                             </div>
                             <%
                         }

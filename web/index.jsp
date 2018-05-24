@@ -2,6 +2,7 @@
 <%@page import="java.sql.Date"%>
 <%
     String userName = session.getAttribute("userName")+"";
+    String nomeRub = session.getAttribute("name")+"";
     String role = session.getAttribute("role")+"";
     String IDPage = request.getParameter("IDPage")+"";
 
@@ -10,7 +11,7 @@
     String pageName = "Homepage";
     String pageCategory = IDPage.charAt(0)+"";
     switch(pageCategory){
-        case "-1":
+        case "-":
             pageName = "Gestione Dipendenti";
             break;
         case "0":

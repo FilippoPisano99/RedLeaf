@@ -1,6 +1,11 @@
 <div id="UserTab">
     <div class="TitleTab">
-        <h2><%= userName %></h2>
+        <h2><%= nomeRub %></h2>
+        <%
+        if( role.equals("Admin") ){
+            out.println("<small>"+ role + "</small>");
+        }
+        %>
     </div>
 
     <a href="clearSession.jsp">
@@ -10,15 +15,15 @@
     </a>
     <%
     if( role.equals("Admin") )
-        {
-            %>
-            <a href="index.jsp?IDPage=-1" >
-                <div class="UserTabBtn">
-                    Gestione dipendenti
-                </div>
-            </a>
-            <%
-        } %>
+    {
+        %>
+        <a href="index.jsp?IDPage=-1" >
+            <div class="UserTabBtn">
+                Gestione dipendenti
+            </div>
+        </a>
+        <%
+    } %>
 
     <br>
 
