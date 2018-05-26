@@ -46,6 +46,9 @@
                 "'"+ruolo+"', "+
                 "'"+ID_rubrica+"' )");
 
+                session.setAttribute("userName",null);
+                response.sendRedirect("clearSession.jsp");
+
             }
 
         }
