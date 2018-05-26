@@ -5,7 +5,7 @@
         <title>Gestionale d'Azienda</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="favicon.png" />
+        <link rel="shortcut icon" href="res/favicon.png" />
 
         <link rel="stylesheet" type="text/css" href="css/stile.css">
         <link rel="stylesheet" type="text/css" href="css/loginBox.css">
