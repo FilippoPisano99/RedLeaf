@@ -14,8 +14,7 @@
         </div>
     </a>
     <%
-    if( role.equals("Admin") )
-    {
+    if( role.equals("Admin") ){
         %>
         <a href="index.jsp?IDPage=-1" >
             <div class="UserTabBtn">
@@ -23,7 +22,14 @@
             </div>
         </a>
         <%
-    } %>
+    }
+    %>
+
+    <a href="about.jsp">
+        <div class="UserTabBtn">
+            About
+        </div>
+    </a>
 
     <br>
 

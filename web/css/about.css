@@ -1,0 +1,33 @@
+.halfCard{
+    float: left;
+    width: 50%;
+    height: -webkit-fill-available;
+    text-align: center;
+}
+.halfCard-dark{
+    background-color: #333;
+    color: white;
+}
+.imgLogo{
+    margin-top: calc(7% - 50px);
+    width: calc(100% - 50px);
+}
+
+body{
+    margin: 0px;
+    padding: 0px;
+    background-color: white;
+}
+.writtenLogo{
+    font-size: 10vh;
+}
+.writtenLogo-red{
+    color: red;
+}
+.terzeParti{
+        list-style: none;
+}
+.home-img{
+    padding-top: 100px;
+    font-size: 6vh;
+}
